@@ -12,3 +12,4 @@ New text for the readme to check CI workflow is working.
 * License [![LICENSE](https://img.shields.io/github/license/jamnic1994/GroupProject.svg?style=flat-square)](https://github.com/jamnic1994/GroupProject/blob/master/LICENSE)
 * Release [![Releases](https://img.shields.io/github/release/jamnic1994/GroupProject/all.svg?style=flat-square)](https://github.com/jamnic1994/GroupProject/releases)
 
+.
