@@ -4,7 +4,7 @@ New text for the readme to check CI workflow is working.
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/jamnic1994/GroupProject/main.yml?branch=master)
 
-[![LICENSE](https://img.shields.io/github/license/jamnic1994/sem.svg?style=flat-square)](https://github.com/jamnic1994/GroupProject/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/jamnic1994/GroupProject.svg?style=flat-square)](https://github.com/jamnic1994/GroupProject/blob/master/LICENSE)
 
 # Software Engineering Methods
 * Master Build Status ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/jamnic1994/GroupProject/main.yml?branch=master)
