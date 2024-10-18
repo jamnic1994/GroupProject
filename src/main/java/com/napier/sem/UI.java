@@ -15,21 +15,35 @@ public class UI {
             if (!isCICD) {
                 System.out.print("\n _____________________________________________________________\n");
                 System.out.println("Enter question number to receive answer: \n" +
-                        "(1) Countries from largest to smallest \n" +
-                        "(2) Top N populated countries \n" +
-                        "(3) Cities from largest to smallest \n" +
-                        "(4) Top N populated cities \n" +
-                        "(5) Capital cities from largest to smallest \n" +
-                        "(6) Top N populated capital cities \n" +
-                        "(7) Population of people living in/out of cities \n" +
-                        "(8) Total populations \n" +
-                        "(9) Language speakers from greatest to smallest \n" +
-                        "(-1) Exit");
+                    "(1) Countries from largest to smallest \n" +
+                    "(2) Top N populated countries \n" +
+                    "(3) Cities from largest to smallest \n" +
+                    "(4) Top N populated cities \n" +
+                    "(5) Capital cities from largest to smallest \n" +
+                    "(6) Top N populated capital cities \n" +
+                    "(7) Population of people living in/out of cities \n" +
+                    "(8) Total populations \n" +
+                    "(9) Language speakers from greatest to smallest \n" +
+                    "(-1) Exit");
 
                 System.out.print("Your choice: ");  // Prompt for input
             } else {
+
+                System.out.print("\n _____________________________________________________________\n");
+                System.out.println("Enter question number to receive answer: \n" +
+                    "(1) Countries from largest to smallest \n" +
+                    "(2) Top N populated countries \n" +
+                    "(3) Cities from largest to smallest \n" +
+                    "(4) Top N populated cities \n" +
+                    "(5) Capital cities from largest to smallest \n" +
+                    "(6) Top N populated capital cities \n" +
+                    "(7) Population of people living in/out of cities \n" +
+                    "(8) Total populations \n" +
+                    "(9) Language speakers from greatest to smallest \n" +
+                    "(-1) Exit");
+
                 // Simulate input for CI/CD
-                inputNum = 1; // Default to first option or some predefined logic
+                inputNum = -1; // Default to first option or some predefined logic
             }
 
             try {
