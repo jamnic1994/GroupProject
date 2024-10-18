@@ -10,6 +10,7 @@ public class UI {
 
         // Check if running in CI/CD environment
         boolean isCICD = System.getenv("CI") != null;  // This assumes a CI environment variable is set
+        System.out.println("Is CI/CD: " + isCICD);  // Debugging output
 
         // Main loop for user interaction
         while (inputNum != -1) {
