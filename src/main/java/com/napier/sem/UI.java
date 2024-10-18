@@ -9,7 +9,7 @@ public class UI {
         int inputNum = 0;
 
         // Check if running in CI/CD environment
-        boolean isCICD = System.getenv("CI") != null;  // This assumes a CI environment variable is set
+        boolean isCICD = System.getenv("CD") != null;  // This assumes a CI environment variable is set
 
         while (inputNum != -1) {
             if (!isCICD) {
