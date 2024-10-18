@@ -18,7 +18,8 @@ jobs:
         with:
           java-version: '14'
           distribution: 'adopt'
-      - name: { run: env }
+      - name: Print environment variables
+        run: env  # This will print all environment variables to the log
       - name: Build with Maven
         run: mvn package
       - name: Run docker compose
