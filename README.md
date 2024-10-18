@@ -1,16 +1,22 @@
-To run:
+# To run:
 
 1. Stop + delete any running containers and images.
 2. Delete target directory
-3. Build project (ctrl + F9)
-4. Compile in Maven
-5. Package in Maven
-6. Run docker-compose.yml
-7. Open terminal
-8. Input: docker exec -it <container_id_or_name> /bin/sh
-9. Press enter
-10. Input: java -jar /tmp/seMethods-0.1-alpha-4-jar-with-dependencies.jar
-11. Press enter
+3. Set CI in .env file to "false" (Otherwise it will run through all menu options automatically)
+4. Build project (ctrl + F9)
+5. Compile in Maven
+6. Package in Maven
+7. Run docker-compose.yml
+8. Open terminal
+9. Input: docker exec -it <container_id_or_name> /bin/sh
+10. Press enter
+11. Input: java -jar /tmp/seMethods-0.1-alpha-4-jar-with-dependencies.jar
+12. Press enter
+13. You can now use the menu on the terminal!!
+
+# If pushing to github repo!!
+
+Set CI in .env file to "true" (Otherwise github workspace won't complete)
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/jamnic1994/groupproject/main.yml?branch=master)
 
