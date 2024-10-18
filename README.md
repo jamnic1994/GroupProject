@@ -1,6 +1,16 @@
-This is sample text for the readme.
+To run:
 
-New text for the readme to check CI workflow is working.
+1. Stop + delete any running containers and images.
+2. Delete target directory
+3. Build project (ctrl + F9)
+4. Compile in Maven
+5. Package in Maven
+6. Run docker-compose.yml
+7. Open terminal
+8. Input: docker exec -it <container_id_or_name> /bin/sh
+9. Press enter
+10. Input: java -jar /tmp/seMethods-0.1-alpha-4-jar-with-dependencies.jar
+11. Press enter
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/jamnic1994/groupproject/main.yml?branch=master)
 
