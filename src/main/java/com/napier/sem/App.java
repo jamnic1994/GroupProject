@@ -1,3 +1,8 @@
+/**
+ * Application Created by 40690819, 40664564, 40650822, 40592313
+ * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
+ * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
+**/
 package com.napier.sem;
 
 import java.sql.*;
@@ -6,15 +11,15 @@ public class App
 {
     public static void main(String[] args)
     {
-        // Create new Application
+        // Create class objects
         App a = new App();
+        UI ui = new UI();
 
         // Connect to database
         a.connect();
-        // Get Employee
-        Employee emp = a.getEmployee(255530);
-        // Display results
-        a.displayEmployee(emp);
+
+        // Run the console menu
+        UI.UI();
 
         // Disconnect from database
         a.disconnect();
@@ -50,7 +55,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/employees?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -84,7 +89,9 @@ public class App
             }
         }
     }
-    public Employee getEmployee(int ID)
+
+    // Start of world.sql methods
+    public City getCity(int ID)
     {
         try
         {
@@ -93,16 +100,8 @@ public class App
 
             // Create string for SQL statement
             String strSelect =
-                    "SELECT employees.emp_no AS emp_no_employee, employees.first_name, employees.last_name, titles.title, salaries.salary, "
-                            + "departments.dept_name, CONCAT(manager.first_name, ' ', manager.last_name) AS manager_name "
-                            + "FROM employees "
-                            + "JOIN titles ON employees.emp_no = titles.emp_no "
-                            + "JOIN salaries ON employees.emp_no = salaries.emp_no "
-                            + "JOIN dept_emp ON employees.emp_no = dept_emp.emp_no "
-                            + "JOIN departments ON dept_emp.dept_no = departments.dept_no "
-                            + "JOIN dept_manager ON departments.dept_no = dept_manager.dept_no "
-                            + "JOIN employees AS manager ON dept_manager.emp_no = manager.emp_no "
-                            + "WHERE employees.emp_no = " + ID;
+                    "SELECT * FROM city "
+                    + "WHERE id  = " + ID;
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -110,15 +109,13 @@ public class App
             // Check if a result is returned
             if (rset.next())
             {
-                Employee emp = new Employee();
-                emp.emp_no = rset.getInt("emp_no_employee");
-                emp.first_name = rset.getString("first_name");
-                emp.last_name = rset.getString("last_name");
-                emp.title = rset.getString("title");
-                emp.salary = rset.getInt("salary");
-                emp.dept_name = rset.getString("dept_name");
-                emp.manager = rset.getString("manager_name");
-                return emp;
+                City city = new City();
+                city.city_id = rset.getInt("ID");
+                city.name = rset.getString("Name");
+                city.countryCode = rset.getString("CountryCode");
+                city.district = rset.getString("District");
+                city.population = rset.getInt("Population");
+                return city;
             }
             else
                 return null;
@@ -131,19 +128,17 @@ public class App
         }
     }
 
-
-    public void displayEmployee(Employee emp)
+    public void displayCity(City city)
     {
-        if (emp != null)
+        if (city != null)
         {
             System.out.println(
-                    emp.emp_no + " "
-                            + emp.first_name + " "
-                            + emp.last_name + "\n"
-                            + emp.title + "\n"
-                            + "Salarys:" + emp.salary + "\n"
-                            + emp.dept_name + "\n"
-                            + "Manager: " + emp.manager + "\n");
+                "City ID: " + city.city_id + "\n"
+                + "City Name: " +  city.name + "\n"
+                + "City Country Code: " +  city.countryCode + "\n"
+                + "City District: " +  city.district + "\n"
+                + "City Population: " +  city.population + "\n"
+            );
         }
     }
 }
