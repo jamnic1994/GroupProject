@@ -1,6 +1,9 @@
 name: A workflow for Group 36s App
 on: push
 
+env:  # Define global environment variables
+  CI: true  # This sets the CI variable to true
+
 jobs:
   build:
     name: Hello world action
