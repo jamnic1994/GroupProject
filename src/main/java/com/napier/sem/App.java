@@ -123,7 +123,7 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
@@ -138,6 +138,57 @@ public class App
                 + "City Country Code: " +  city.countryCode + "\n"
                 + "City District: " +  city.district + "\n"
                 + "City Population: " +  city.population + "\n"
+            );
+        }
+    }
+
+    public Country getCountryByCode(String code)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement statement = con.createStatement();
+
+            // Create string for SQL statement
+            String select = "SELECT * FROM country WHERE Code = " + code;
+
+            // Execute SQL statement
+            ResultSet resultSet = statement.executeQuery(select);
+
+            // Check if a result is returned
+            if (resultSet.next())
+            {
+                Country country = new Country();
+                country.country_Code = resultSet.getString("Code");
+                country.country_Name = resultSet.getString("Name");
+                country.country_Continent = resultSet.getString("Continent");
+                country.country_Region = resultSet.getString("Region");
+                country.country_Population = resultSet.getInt("Population");
+                country.country_Capital = resultSet.getString("Capital");
+                return country;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to find country");
+            return null;
+        }
+    }
+
+    public void displayCountry(Country country)
+    {
+        if (country != null)
+        {
+            System.out.println(
+                             "Country Code: " +  country.country_Code + "\n"
+                            + "Country Name: " +  country.country_Name + "\n"
+                            + "Country Continent: " +  country.country_Continent + "\n"
+                            + "Country Region: " +  country.country_Region + "\n"
+                            + "Country Population: " +  country.country_Population + "\n"
+                            + "Country Capital: " +  country.country_Capital + "\n"
             );
         }
     }
