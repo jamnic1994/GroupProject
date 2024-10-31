@@ -48,8 +48,7 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Selected: Countries_LargestToSmallest");
-                    System.out.println("Countries in world (largest to smallest):");
+                    System.out.println("Countries of the world from largest to smallest:");
                     app.Countries_LargestToSmallest_World();
                     break;
                 case 2:

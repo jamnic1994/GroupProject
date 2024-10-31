@@ -146,12 +146,19 @@ public class App {
 
     public void Countries_LargestToSmallest_World() {
         try {
+
             Statement statement = con.createStatement();
-            String select = "SELECT name FROM country ORDER BY SurfaceArea";
+            String select = "SELECT code, name, continent, region, population, capital FROM country ORDER BY SurfaceArea DESC";
             ResultSet resultSet = statement.executeQuery(select);
 
             while (resultSet.next()) {
-                System.out.println(resultSet.getString("Name"));
+                System.out.println(resultSet.getString("Code") + ", "
+                        + resultSet.getString("Name") + ", "
+                        + resultSet.getString("Continent") + ", "
+                        + resultSet.getString("Region") + ", "
+                        + resultSet.getString("Population") + ", "
+                        + resultSet.getString("Capital"));
+
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -9,7 +9,7 @@
 7. Run docker-compose.yml
 8. Open terminal
 9. Input: docker exec -it <container_id_or_name> /bin/sh 
-(docker exec -it groupproject-app-1 /bin/sh)
+docker exec -it groupproject-app-1 /bin/sh
 
 10. Press enter
 11. Input: java -jar /tmp/seMethods-0.1-alpha-4-jar-with-dependencies.jar
