@@ -9,6 +9,8 @@ import java.sql.*;
 
 public class App
 {
+    private Connection con = null;
+
     public static void main(String[] args)
     {
         // Create class objects
@@ -19,7 +21,7 @@ public class App
         a.connect();
 
         // Run the console menu
-        UI.UI();
+        ui.UI();
 
         // Disconnect from database
         a.disconnect();
@@ -28,7 +30,7 @@ public class App
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+
 
     /**
      * Connect to the MySQL database.
@@ -80,6 +82,8 @@ public class App
         {
             try
             {
+                System.out.println("Closing con");
+
                 // Close connection
                 con.close();
             }
@@ -190,6 +194,32 @@ public class App
                             + "Country Population: " +  country.country_Population + "\n"
                             + "Country Capital: " +  country.country_Capital + "\n"
             );
+        }
+    }
+
+    public void Countries_LargestToSmallest_World()
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement statement = con.createStatement();
+
+            // Create string for SQL statement
+            String select = "SELECT name FROM country ORDER BY SurfaceArea";
+
+            // Execute SQL statement
+            ResultSet resultSet = statement.executeQuery(select);
+
+            // Check if a result is returned
+            if (resultSet.next())
+            {
+                System.out.println(resultSet.getString("Name"));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print countries");
         }
     }
 }

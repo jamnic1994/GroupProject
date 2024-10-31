@@ -2,7 +2,13 @@ package com.napier.sem;
 
 import java.util.Scanner;
 
+
+
 public class UI {
+
+    public static void main(String[] args)
+    {
+    }
 
     public static void UI() {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
@@ -85,6 +91,11 @@ public class UI {
     public static void Countries_LargestToSmallest()
     {
         System.out.println("Selected: Countries_LargestToSmallest");
+        System.out.println("Countries in world (largest to smallest:)");
+
+        App app = new App();
+        app.Countries_LargestToSmallest_World();
+
     }
 
     public static void Countries_TopPopulated()
