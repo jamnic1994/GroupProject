@@ -94,6 +94,7 @@ public class UI {
         scanner.close();
     }
 
+    //Terminal UI for country questions
     public void Countries_LargestToSmallest() {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;

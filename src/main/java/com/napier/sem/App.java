@@ -145,16 +145,21 @@ public class App {
         }
     }
 
+    //Prints all countries from largest to smallest by population
     public void Countries_LargestToSmallest_World() {
         try {
 
-            Statement statement = con.createStatement();
+            //SQL statement as a string
             String select =
                     "SELECT code, name, continent, region, population, capital " +
                             "FROM country " +
                             "ORDER BY population DESC";
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
 
+            //Print SQL results
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Code") + ", "
                         + resultSet.getString("Name") + ", "
@@ -170,23 +175,28 @@ public class App {
         }
     }
 
+    //Prints countries in an inputted region from largest to smallest by population
     public void Countries_LargestToSmallest_Region() {
         try {
             System.out.println("Type region:");
 
+            //Create scanner and process chosen region as a string input
             Scanner scanner = new Scanner(System.in);
             String regionInput = scanner.nextLine();
             System.out.println("_________");
 
+            //SQL statement as a string
             String select =
                     "SELECT code, name, continent, region, population, capital " +
                             "FROM country " +
                             "WHERE region LIKE " + '"' + regionInput + '"' +
                             " ORDER BY population DESC";
 
+            //Create & execute SQL statement
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
 
+            //Print SQL results
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Code") + ", "
                         + resultSet.getString("Name") + ", "
@@ -204,23 +214,28 @@ public class App {
 
     }
 
+    //Prints countries in an inputted continent from largest to smallest by population
     public void Countries_LargestToSmallest_Continent() {
         try {
             System.out.println("Type continent:");
 
+            //Create scanner and process chosen continent as a string input
             Scanner scanner = new Scanner(System.in);
             String continentInput = scanner.nextLine();
             System.out.println("_________");
 
+            //SQL statement as a string
             String select =
                     "SELECT code, name, continent, region, population, capital " +
                             "FROM country " +
                             "WHERE continent LIKE " + '"' + continentInput + '"' +
                             " ORDER BY population DESC";
 
+            //Create & execute SQL statement
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
 
+            //Print SQL results
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Code") + ", "
                         + resultSet.getString("Name") + ", "
@@ -238,27 +253,33 @@ public class App {
 
     }
 
+    //Prints N (user inputted) number of countries from largest to smallest by population
     public void Countries_TopPopulated() {
         int inputNum = 0;
         Scanner scanner = new Scanner(System.in);
 
+        //Takes in num of countries to be displayed as user inputted int
         while (inputNum != -1) {
             try {
                 System.out.println("Type number of countries to display:");
                 inputNum = Integer.parseInt(scanner.nextLine());
 
+                //Check inputNum is within appropriate range
                 if (inputNum > 0 && inputNum <= 500) {
                     try {
                         System.out.println("_________");
 
+                        //SQL statement as a string
                         String select =
                                 "SELECT code, name, continent, region, population, capital " +
                                         "FROM country " +
                                         " ORDER BY population DESC";
 
+                        //Create & execute SQL statement
                         Statement statement = con.createStatement();
                         ResultSet resultSet = statement.executeQuery(select);
 
+                        //Print results while the inputNums limit has not been reached. Increment on each iteration
                         int i = 0;
                         while (resultSet.next() && i < inputNum) {
                             i++;
