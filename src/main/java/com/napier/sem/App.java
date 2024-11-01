@@ -152,7 +152,7 @@ public class App {
             String select =
                     "SELECT code, name, continent, region, population, capital " +
                             "FROM country " +
-                            "ORDER BY SurfaceArea DESC";
+                            "ORDER BY population DESC";
             ResultSet resultSet = statement.executeQuery(select);
 
             while (resultSet.next()) {
@@ -182,7 +182,7 @@ public class App {
                     "SELECT code, name, continent, region, population, capital " +
                             "FROM country " +
                             "WHERE region LIKE " + '"' + regionInput + '"' +
-                            " ORDER BY SurfaceArea DESC";
+                            " ORDER BY population DESC";
 
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
@@ -205,42 +205,51 @@ public class App {
     }
 
     public void Countries_TopPopulated() {
-        try {
-            System.out.println("Type number of countries to display:");
-            Scanner scanner = new Scanner(System.in);
-            int inputNum = 0;
+        int inputNum = 0;
+        Scanner scanner = new Scanner(System.in);
 
+        while (inputNum != -1) {
             try {
+                System.out.println("Type number of countries to display:");
                 inputNum = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid integer");
+
+                if (inputNum > 0 && inputNum <= 500) {
+                    try {
+                        System.out.println("_________");
+
+                        String select =
+                                "SELECT code, name, continent, region, population, capital " +
+                                        "FROM country " +
+                                        " ORDER BY population DESC";
+
+                        Statement statement = con.createStatement();
+                        ResultSet resultSet = statement.executeQuery(select);
+
+                        int i = 0;
+                        while (resultSet.next() && i < inputNum) {
+                            i++;
+                            System.out.println(resultSet.getString("Code") + ", "
+                                    + resultSet.getString("Name") + ", "
+                                    + resultSet.getString("Continent") + ", "
+                                    + resultSet.getString("Region") + ", "
+                                    + resultSet.getString("Population") + ", "
+                                    + resultSet.getString("Capital"));
+                        }
+                        inputNum = -1;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid integer");
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a number between 1 and 500.");
+                    inputNum = 0;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to print countries");
             }
-
-            System.out.println("_________");
-
-            String select =
-                    "SELECT code, name, continent, region, population, capital " +
-                            "FROM country " +
-                            " ORDER BY SurfaceArea DESC";
-
-            Statement statement = con.createStatement();
-            ResultSet resultSet = statement.executeQuery(select);
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Code") + ", "
-                        + resultSet.getString("Name") + ", "
-                        + resultSet.getString("Continent") + ", "
-                        + resultSet.getString("Region") + ", "
-                        + resultSet.getString("Population") + ", "
-                        + resultSet.getString("Capital"));
-
-            }
-            scanner.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to print countries");
         }
 
+        scanner.close();
     }
 }
 
