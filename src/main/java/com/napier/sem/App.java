@@ -6,6 +6,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class App {
     private Connection con = null;
@@ -148,7 +149,10 @@ public class App {
         try {
 
             Statement statement = con.createStatement();
-            String select = "SELECT code, name, continent, region, population, capital FROM country ORDER BY SurfaceArea DESC";
+            String select =
+                    "SELECT code, name, continent, region, population, capital " +
+                            "FROM country " +
+                            "ORDER BY SurfaceArea DESC";
             ResultSet resultSet = statement.executeQuery(select);
 
             while (resultSet.next()) {
@@ -165,4 +169,78 @@ public class App {
             System.out.println("Failed to print countries");
         }
     }
+
+    public void Countries_LargestToSmallest_Region() {
+        try {
+            System.out.println("Type region:");
+
+            Scanner scanner = new Scanner(System.in);
+            String regionInput = scanner.nextLine();
+            System.out.println("_________");
+
+            String select =
+                    "SELECT code, name, continent, region, population, capital " +
+                            "FROM country " +
+                            "WHERE region LIKE " + '"' + regionInput + '"' +
+                            " ORDER BY SurfaceArea DESC";
+
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Code") + ", "
+                        + resultSet.getString("Name") + ", "
+                        + resultSet.getString("Continent") + ", "
+                        + resultSet.getString("Region") + ", "
+                        + resultSet.getString("Population") + ", "
+                        + resultSet.getString("Capital"));
+
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print countries");
+        }
+
+    }
+
+    public void Countries_TopPopulated() {
+        try {
+            System.out.println("Type number of countries to display:");
+            Scanner scanner = new Scanner(System.in);
+            int inputNum = 0;
+
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer");
+            }
+
+            System.out.println("_________");
+
+            String select =
+                    "SELECT code, name, continent, region, population, capital " +
+                            "FROM country " +
+                            " ORDER BY SurfaceArea DESC";
+
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Code") + ", "
+                        + resultSet.getString("Name") + ", "
+                        + resultSet.getString("Continent") + ", "
+                        + resultSet.getString("Region") + ", "
+                        + resultSet.getString("Population") + ", "
+                        + resultSet.getString("Capital"));
+
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print countries");
+        }
+
+    }
 }
+

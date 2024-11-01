@@ -48,8 +48,8 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Countries of the world from largest to smallest:");
-                    app.Countries_LargestToSmallest_World();
+                    System.out.println("Countries from largest to smallest:");
+                    Countries_LargestToSmallest();
                     break;
                 case 2:
                     System.out.println("Selected: Countries_TopPopulated");
@@ -90,6 +90,60 @@ public class UI {
                 default:
                     System.out.println("Feature not yet implemented.");
             }
+        }
+        scanner.close();
+    }
+
+    public void Countries_LargestToSmallest() {
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        while (inputNum != -1) {
+            System.out.print("\n ______________________________\n");
+            System.out.println("Countries from largest to smallest: \n" +
+                    "(1) Countries in world \n" +
+                    "(2) Countries in region \n" +
+                    "(3) Countries in continent \n" +
+                    "(4) Top N populated countries \n" +
+                    "(-1) Exit");
+
+            System.out.print("Your choice: ");
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Countries of the world from largest to smallest:\n_______\n");
+                    app.Countries_LargestToSmallest_World();
+                    inputNum = -1;
+                    break;
+                case 2:
+                    System.out.println("Countries a region from largest to smallest:\n_______\n");
+                    app.Countries_LargestToSmallest_Region();
+                    inputNum = -1;
+                    break;
+                case 3:
+                    System.out.println("Countries of the world from largest to smallest:");
+                    inputNum = -1;
+                    break;
+                case 4:
+                    System.out.println("Top N populated countries in the world:");
+                    app.Countries_TopPopulated();
+                    inputNum = -1;
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please enter a number between -1 and 4.");
+                    inputNum = 0;
+                    break;
+            }
+
         }
         scanner.close();
     }
