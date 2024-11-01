@@ -204,6 +204,40 @@ public class App {
 
     }
 
+    public void Countries_LargestToSmallest_Continent() {
+        try {
+            System.out.println("Type continent:");
+
+            Scanner scanner = new Scanner(System.in);
+            String continentInput = scanner.nextLine();
+            System.out.println("_________");
+
+            String select =
+                    "SELECT code, name, continent, region, population, capital " +
+                            "FROM country " +
+                            "WHERE continent LIKE " + '"' + continentInput + '"' +
+                            " ORDER BY population DESC";
+
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Code") + ", "
+                        + resultSet.getString("Name") + ", "
+                        + resultSet.getString("Continent") + ", "
+                        + resultSet.getString("Region") + ", "
+                        + resultSet.getString("Population") + ", "
+                        + resultSet.getString("Capital"));
+
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print countries");
+        }
+
+    }
+
     public void Countries_TopPopulated() {
         int inputNum = 0;
         Scanner scanner = new Scanner(System.in);

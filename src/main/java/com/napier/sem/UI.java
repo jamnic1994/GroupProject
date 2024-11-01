@@ -122,12 +122,13 @@ public class UI {
                     inputNum = -1;
                     break;
                 case 2:
-                    System.out.println("Countries a region from largest to smallest:\n_______\n");
+                    System.out.println("Countries in a region from largest to smallest:\n_______\n");
                     app.Countries_LargestToSmallest_Region();
                     inputNum = -1;
                     break;
                 case 3:
-                    System.out.println("Countries of the world from largest to smallest:");
+                    System.out.println("Countries in a continent from largest to smallest:");
+                    app.Countries_LargestToSmallest_Continent();
                     inputNum = -1;
                     break;
                 case 4:
