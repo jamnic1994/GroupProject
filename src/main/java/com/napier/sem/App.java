@@ -6,6 +6,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class App
 {
@@ -140,5 +141,104 @@ public class App
                 + "City Population: " +  city.population + "\n"
             );
         }
+    }
+
+    //Prints all cities from largest to smallest by population
+    public void Cities_LargestToSmallest_World() {
+        try {
+
+            //SQL statement as a string
+            String select =
+                    "SELECT name, country, district, population " +
+                            "FROM city " +
+                            "ORDER BY population DESC";
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Name") + ", "
+                        + resultSet.getString("Country") + ", "
+                        + resultSet.getString("District") + ", "
+                        + resultSet.getString("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print cities");
+        }
+    }
+
+    //Prints cities in an inputted region from largest to smallest by population
+    public void Cities_LargestToSmallest_Region() {
+        try {
+            System.out.println("Type region:");
+
+            //Create scanner and process chosen region as a string input
+            Scanner scanner = new Scanner(System.in);
+            String regionInput = scanner.nextLine();
+            System.out.println("_________");
+
+            //SQL statement as a string
+            String select =
+                    "SELECT name, country, district, population " +
+                            "FROM city " +
+                            "WHERE region LIKE " + '"' + regionInput + '"' +
+                            " ORDER BY population DESC";
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Name") + ", "
+                        + resultSet.getString("Country") + ", "
+                        + resultSet.getString("District") + ", "
+                        + resultSet.getString("Population"));
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print cities");
+        }
+
+    }
+
+    //Prints cities in an inputted continent from largest to smallest by population
+    public void Cities_LargestToSmallest_Continent() {
+        try {
+            System.out.println("Type continent:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String continentInput = scanner.nextLine();
+            System.out.println("_________");
+
+            //SQL statement as a string
+            String select =
+                    "SELECT name, country, district, population " +
+                            "FROM city " +
+                            "WHERE continent LIKE " + '"' + continentInput + '"' +
+                            " ORDER BY population DESC";
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Name") + ", "
+                        + resultSet.getString("Country") + ", "
+                        + resultSet.getString("District") + ", "
+                        + resultSet.getString("Population"));
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print cities");
+        }
+
     }
 }
