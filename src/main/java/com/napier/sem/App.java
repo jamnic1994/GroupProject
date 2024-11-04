@@ -10,17 +10,18 @@ import java.util.Scanner;
 
 public class App
 {
-    public static void main(String[] args)
-    {
-        // Create class objects
-        App a = new App();
-        UI ui = new UI();
+    private Connection con = null;
 
-        // Connect to database
+    public static void main(String[] args) {
+        // Create a single App instance and connect it to the database
+        App a = new App();
         a.connect();
 
+        // Pass the connected App instance to UI
+        UI ui = new UI(a);
+
         // Run the console menu
-        UI.UI();
+        ui.UI();
 
         // Disconnect from database
         a.disconnect();
@@ -29,7 +30,7 @@ public class App
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+
 
     /**
      * Connect to the MySQL database.

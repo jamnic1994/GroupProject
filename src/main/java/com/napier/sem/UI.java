@@ -60,8 +60,8 @@ public class UI {
                     Cities_LargestToSmallest();
                     break;
                 case 4:
-                    System.out.println("Selected: Cities_TopPopulated");
-                    // Add the actual logic for Top N populated cities
+                    System.out.println("Top N populated cities:");
+                    // app.Cities_TopPopulated();
                     break;
                 case 5:
                     System.out.println("Selected: CapCities_LargestToSmallest");
@@ -130,11 +130,6 @@ public class UI {
                 case 3:
                     System.out.println("Cities in a continent from largest to smallest:");
                     app.Cities_LargestToSmallest_Continent();
-                    inputNum = -1;
-                    break;
-                case 4:
-                    System.out.println("Top N populated cities in the world:");
-                    // app.Cities_TopPopulated();
                     inputNum = -1;
                     break;
                 case -1:
