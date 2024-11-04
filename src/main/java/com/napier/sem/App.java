@@ -150,8 +150,8 @@ public class App
 
             //SQL statement as a string
             String select =
-                    "SELECT name, country, district, population " +
-                            "FROM city " +
+                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
+                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
                             "ORDER BY population DESC";
 
             //Create & execute SQL statement
@@ -183,9 +183,9 @@ public class App
 
             //SQL statement as a string
             String select =
-                    "SELECT name, country, district, population " +
+                    "SELECT name, countryCode AS country, district, population " +
                             "FROM city " +
-                            "WHERE region LIKE " + '"' + regionInput + '"' +
+                            "WHERE (SELECT region FROM country WHERE code LIKE (SELECT countryCode FROM city)) LIKE " + '"' + regionInput + '"' +
                             " ORDER BY population DESC";
 
             //Create & execute SQL statement

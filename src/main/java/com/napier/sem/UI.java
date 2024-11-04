@@ -105,7 +105,6 @@ public class UI {
                     "(1) Cities in world \n" +
                     "(2) Cities in region \n" +
                     "(3) Cities in continent \n" +
-                    "(4) Top N populated cities \n" +
                     "(-1) Exit");
 
             System.out.print("Your choice: ");
