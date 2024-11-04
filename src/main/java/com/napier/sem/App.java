@@ -2,14 +2,13 @@
  * Application Created by 40690819, 40664564, 40650822, 40592313
  * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
  * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
-**/
+ **/
 package com.napier.sem;
 
 import java.sql.*;
 import java.util.Scanner;
 
-public class App
-{
+public class App {
     private Connection con = null;
 
     public static void main(String[] args) {
@@ -35,39 +34,29 @@ public class App
     /**
      * Connect to the MySQL database.
      */
-    public void connect()
-    {
-        try
-        {
+    public void connect() {
+        try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            }
-            catch (SQLException sqle)
-            {
+            } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -76,41 +65,33 @@ public class App
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
+    public void disconnect() {
+        if (con != null) {
+            try {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
     }
 
     // Start of world.sql methods
-    public City getCity(int ID)
-    {
-        try
-        {
+    public City getCity(int ID) {
+        try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
 
             // Create string for SQL statement
             String strSelect =
                     "SELECT * FROM city "
-                    + "WHERE id  = " + ID;
+                            + "WHERE id  = " + ID;
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             // Check if a result is returned
-            if (rset.next())
-            {
+            if (rset.next()) {
                 City city = new City();
                 city.city_id = rset.getInt("ID");
                 city.name = rset.getString("Name");
@@ -118,28 +99,23 @@ public class App
                 city.district = rset.getString("District");
                 city.population = rset.getInt("Population");
                 return city;
-            }
-            else
+            } else
                 return null;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get employee details");
             return null;
         }
     }
 
-    public void displayCity(City city)
-    {
-        if (city != null)
-        {
+    public void displayCity(City city) {
+        if (city != null) {
             System.out.println(
-                "City ID: " + city.city_id + "\n"
-                + "City Name: " +  city.name + "\n"
-                + "City Country Code: " +  city.countryCode + "\n"
-                + "City District: " +  city.district + "\n"
-                + "City Population: " +  city.population + "\n"
+                    "City ID: " + city.city_id + "\n"
+                            + "City Name: " + city.name + "\n"
+                            + "City Country Code: " + city.countryCode + "\n"
+                            + "City District: " + city.district + "\n"
+                            + "City Population: " + city.population + "\n"
             );
         }
     }
@@ -183,10 +159,10 @@ public class App
 
             //SQL statement as a string
             String select =
-                    "SELECT name, countryCode AS country, district, population " +
-                            "FROM city " +
-                            "WHERE (SELECT region FROM country WHERE code LIKE (SELECT countryCode FROM city)) LIKE " + '"' + regionInput + '"' +
-                            " ORDER BY population DESC";
+                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
+                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
+                            "WHERE co.region LIKE " + '"' + regionInput + '"' +
+                            "ORDER BY population DESC";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
@@ -219,10 +195,10 @@ public class App
 
             //SQL statement as a string
             String select =
-                    "SELECT name, country, district, population " +
-                            "FROM city " +
-                            "WHERE continent LIKE " + '"' + continentInput + '"' +
-                            " ORDER BY population DESC";
+                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
+                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
+                            "WHERE co.continent LIKE " + '"' + continentInput + '"' +
+                            "ORDER BY population DESC";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
