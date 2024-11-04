@@ -218,4 +218,40 @@ public class App {
         }
 
     }
+
+    //Prints cities in an inputted country from largest to smallest by population
+    public void Cities_LargestToSmallest_Country() {
+        try {
+            System.out.println("Type country:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String countryInput = scanner.nextLine();
+            System.out.println("_________");
+
+            //SQL statement as a string
+            String select =
+                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
+                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
+                            "WHERE co.name LIKE " + '"' + countryInput + '"' +
+                            "ORDER BY population DESC";
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("Name") + ", "
+                        + resultSet.getString("Country") + ", "
+                        + resultSet.getString("District") + ", "
+                        + resultSet.getString("Population"));
+            }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print cities");
+        }
+
+    }
 }

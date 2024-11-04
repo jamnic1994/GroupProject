@@ -105,6 +105,7 @@ public class UI {
                     "(1) Cities in world \n" +
                     "(2) Cities in region \n" +
                     "(3) Cities in continent \n" +
+                    "(4) Cities in continent \n" +
                     "(-1) Exit");
 
             System.out.print("Your choice: ");
@@ -129,6 +130,11 @@ public class UI {
                 case 3:
                     System.out.println("Cities in a continent from largest to smallest:");
                     app.Cities_LargestToSmallest_Continent();
+                    inputNum = -1;
+                    break;
+                case 4:
+                    System.out.println("Cities in a country from largest to smallest:");
+                    app.Cities_LargestToSmallest_Country();
                     inputNum = -1;
                     break;
                 case -1:
