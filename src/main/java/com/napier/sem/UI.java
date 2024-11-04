@@ -52,8 +52,8 @@ public class UI {
                     Countries_LargestToSmallest();
                     break;
                 case 2:
-                    System.out.println("Selected: Countries_TopPopulated");
-                    // Add the actual logic for Top N populated countries
+                    System.out.println("Top N populated countries:");
+                    app.Countries_TopPopulated();
                     break;
                 case 3:
                     System.out.println("Selected: Cities_LargestToSmallest");
@@ -105,7 +105,6 @@ public class UI {
                     "(1) Countries in world \n" +
                     "(2) Countries in region \n" +
                     "(3) Countries in continent \n" +
-                    "(4) Top N populated countries \n" +
                     "(-1) Exit");
 
             System.out.print("Your choice: ");
@@ -130,11 +129,6 @@ public class UI {
                 case 3:
                     System.out.println("Countries in a continent from largest to smallest:");
                     app.Countries_LargestToSmallest_Continent();
-                    inputNum = -1;
-                    break;
-                case 4:
-                    System.out.println("Top N populated countries in the world:");
-                    app.Countries_TopPopulated();
                     inputNum = -1;
                     break;
                 case -1:
