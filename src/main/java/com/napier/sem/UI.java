@@ -57,11 +57,11 @@ public class UI {
                     break;
                 case 3:
                     System.out.println("Cities from largest to smallest:");
-                    Cities_LargestToSmallest();
+                    Cities_LargestToSmallest(false);
                     break;
                 case 4:
                     System.out.println("Top N populated cities:");
-                    // app.Cities_TopPopulated();
+                    Cities_LargestToSmallest(true);
                     break;
                 case 5:
                     System.out.println("Selected: CapCities_LargestToSmallest");
@@ -95,7 +95,7 @@ public class UI {
     }
 
     //Terminal UI for city questions
-    public void Cities_LargestToSmallest() {
+    public void Cities_LargestToSmallest(boolean topPopulated) {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
@@ -105,7 +105,7 @@ public class UI {
                     "(1) Cities in world \n" +
                     "(2) Cities in region \n" +
                     "(3) Cities in continent \n" +
-                    "(4) Cities in continent \n" +
+                    "(4) Cities in a country \n" +
                     "(-1) Exit");
 
             System.out.print("Your choice: ");
@@ -119,22 +119,22 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Cities of the world from largest to smallest:\n_______\n");
-                    app.Cities_LargestToSmallest_World();
+                    app.Cities_LargestToSmallest_World(topPopulated);
                     inputNum = -1;
                     break;
                 case 2:
                     System.out.println("Cities in a region from largest to smallest:\n_______\n");
-                    app.Cities_LargestToSmallest_Region();
+                    app.Cities_LargestToSmallest_Region(topPopulated);
                     inputNum = -1;
                     break;
                 case 3:
                     System.out.println("Cities in a continent from largest to smallest:");
-                    app.Cities_LargestToSmallest_Continent();
+                    app.Cities_LargestToSmallest_Continent(topPopulated);
                     inputNum = -1;
                     break;
                 case 4:
                     System.out.println("Cities in a country from largest to smallest:");
-                    app.Cities_LargestToSmallest_Country();
+                    app.Cities_LargestToSmallest_Country(topPopulated);
                     inputNum = -1;
                     break;
                 case -1:
@@ -148,5 +148,33 @@ public class UI {
 
         }
         scanner.close();
+    }
+
+    //Returns int for "Top N questions"
+    public int GetUserIntInput(int min, int max) {
+        //Setup scanner for user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Number of results to display: ");
+
+        int inputNum = 0;
+        while (inputNum != -1) {
+            try {
+                //Ensure intput is int and within range
+                inputNum = Integer.parseInt(scanner.nextLine());
+                if (inputNum <= min || inputNum >= max) {
+                    System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+                    inputNum = 0;
+                }
+                else{
+                    //Close scanner and return int if int is valid
+                    scanner.close();
+                    return inputNum;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+            }
+        }
+
+        return -1;
     }
 }

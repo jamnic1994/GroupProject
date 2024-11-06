@@ -121,7 +121,7 @@ public class App {
     }
 
     //Prints all cities from largest to smallest by population
-    public void Cities_LargestToSmallest_World() {
+    public void Cities_LargestToSmallest_World(boolean topPopulated) {
         try {
 
             //SQL statement as a string
@@ -148,7 +148,7 @@ public class App {
     }
 
     //Prints cities in an inputted region from largest to smallest by population
-    public void Cities_LargestToSmallest_Region() {
+    public void Cities_LargestToSmallest_Region(boolean topPopulated) {
         try {
             System.out.println("Type region:");
 
@@ -184,7 +184,7 @@ public class App {
     }
 
     //Prints cities in an inputted continent from largest to smallest by population
-    public void Cities_LargestToSmallest_Continent() {
+    public void Cities_LargestToSmallest_Continent(boolean topPopulated) {
         try {
             System.out.println("Type continent:");
 
@@ -220,7 +220,7 @@ public class App {
     }
 
     //Prints cities in an inputted country from largest to smallest by population
-    public void Cities_LargestToSmallest_Country() {
+    public void Cities_LargestToSmallest_Country(boolean topPopulated) {
         try {
             System.out.println("Type country:");
 
