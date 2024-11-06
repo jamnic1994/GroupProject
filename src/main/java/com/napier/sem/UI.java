@@ -101,14 +101,7 @@ public class UI {
 
         while (inputNum != -1) {
 
-            if(topNPopulated){
-                System.out.println("Top N populated cities from largest to smallest: \n");
-            }
-            else{
-                System.out.println("Cities from largest to smallest: \n");
-            }
-
-            System.out.print("\n ______________________________\n");
+            System.out.print(" \n______________________________\n");
             System.out.println(
                     "(1) Cities in world \n" +
                     "(2) Cities in region \n" +
