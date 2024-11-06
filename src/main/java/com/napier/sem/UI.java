@@ -1,20 +1,25 @@
+/**
+ * Application Created by 40690819, 40664564,40592313
+ * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
+ * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
+ **/
 package com.napier.sem;
 
 import java.util.Scanner;
 
 public class UI {
+    private App app;
 
-    public static void UI() {
-        Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
+    // Constructor that accepts an App instance with an active connection
+    public UI(App app) {
+        this.app = app;
+    }
+
+    public void UI() {
+        Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
-        // Check if running in CI/CD environment
-        boolean isCICD = System.getenv("CI") != null && System.getenv("CI").equals("true");  // This assumes a CI environment variable is set
-        System.out.println("Is CI/CD: " + isCICD);  // Debugging output
-
-        // Main loop for user interaction
         while (inputNum != -1) {
-            // Print the menu in both interactive and CI/CD mode
             System.out.print("\n _____________________________________________________________\n");
             System.out.println("Enter question number to receive answer: \n" +
                     "(1) Countries from largest to smallest \n" +
@@ -28,109 +33,120 @@ public class UI {
                     "(9) Language speakers from greatest to smallest \n" +
                     "(-1) Exit");
 
-            // Handle input based on environment mode
-            if (!isCICD) {
-                System.out.print("Your choice: ");  // Prompt for input
-                try {
-                    inputNum = Integer.parseInt(scanner.nextLine());  // Read input and parse it
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a valid integer.");
-                    continue;  // Skip to the next iteration if input is invalid
-                }
-            } else {
-                // CI/CD mode: Automatically run tests for options 1 to 9
-                for (int testInput = 1; testInput <= 9; testInput++) {
-                    System.out.println("Running automated test for option " + testInput);
-                    inputNum = testInput;
-
-                    // Process the test input
-                    switch (inputNum) {
-                        case 1: Countries_LargestToSmallest(); break;
-                        case 2: Countries_TopPopulated(); break;
-                        case 3: Cities_LargestToSmallest(); break;
-                        case 4: Cities_TopPopulated(); break;
-                        case 5: CapCities_LargestToSmallest(); break;
-                        case 6: CapCities_TopPopulated(); break;
-                        case 7: Population_InAndOutOfCities(); break;
-                        case 8: TotalPopulations(); break;
-                        case 9: Languages_GreatestToSmallest(); break;
-                    }
-                }
-                inputNum = -1;  // End the loop after automated tests
+            System.out.print("Your choice: ");
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
             }
 
-            // Validate the input range if not in CI/CD mode
             if (inputNum < -1 || inputNum > 9) {
                 System.out.println("Invalid input. Please enter a number between -1 and 9.");
-                continue;  // Skip to the next iteration for invalid inputs
+                continue;
             }
 
-            // Process the user input
             switch (inputNum) {
-                case 1: Countries_LargestToSmallest(); break;
-                case 2: Countries_TopPopulated(); break;
-                case 3: Cities_LargestToSmallest(); break;
-                case 4: Cities_TopPopulated(); break;
-                case 5: CapCities_LargestToSmallest(); break;
-                case 6: CapCities_TopPopulated(); break;
-                case 7: Population_InAndOutOfCities(); break;
-                case 8: TotalPopulations(); break;
-                case 9: Languages_GreatestToSmallest(); break;
-                case -1: Exit(); break;  // Exit on -1
+                case 1:
+                    System.out.println("Countries from largest to smallest:");
+                    // Countries_LargestToSmallest();
+                    break;
+                case 2:
+                    System.out.println("Selected: Countries_TopPopulated");
+                    // Add the actual logic for Top N populated countries
+                    break;
+                case 3:
+                    System.out.println("Cities from largest to smallest:");
+                    Cities_LargestToSmallest();
+                    break;
+                case 4:
+                    System.out.println("Top N populated cities:");
+                    // app.Cities_TopPopulated();
+                    break;
+                case 5:
+                    System.out.println("Selected: CapCities_LargestToSmallest");
+                    // Add the actual logic for Capital cities from largest to smallest
+                    break;
+                case 6:
+                    System.out.println("Selected: CapCities_TopPopulated");
+                    // Add the actual logic for Top N populated capital cities
+                    break;
+                case 7:
+                    System.out.println("Selected: Population_InAndOutOfCities");
+                    // Add the actual logic for Population in and out of cities
+                    break;
+                case 8:
+                    System.out.println("Selected: TotalPopulations");
+                    // Add the actual logic for Total populations
+                    break;
+                case 9:
+                    System.out.println("Selected: Languages_GreatestToSmallest");
+                    // Add the actual logic for Language speakers from greatest to smallest
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Feature not yet implemented.");
             }
         }
-        scanner.close();  // Close the scanner to free resources
+        scanner.close();
     }
 
-    public static void Countries_LargestToSmallest()
-    {
-        System.out.println("Selected: Countries_LargestToSmallest");
-    }
+    //Terminal UI for city questions
+    public void Cities_LargestToSmallest() {
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
 
-    public static void Countries_TopPopulated()
-    {
-        System.out.println("Selected: Countries_TopPopulated");
-    }
+        while (inputNum != -1) {
+            System.out.print("\n ______________________________\n");
+            System.out.println("Cities from largest to smallest: \n" +
+                    "(1) Cities in world \n" +
+                    "(2) Cities in region \n" +
+                    "(3) Cities in continent \n" +
+                    "(4) Cities in continent \n" +
+                    "(-1) Exit");
 
-    public static void Cities_LargestToSmallest()
-    {
-        System.out.println("Selected: Cities_LargestToSmallest");
-    }
+            System.out.print("Your choice: ");
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer");
+                continue;
+            }
 
-    public static void Cities_TopPopulated()
-    {
-        System.out.println("Selected: Cities_TopPopulated");
-    }
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Cities of the world from largest to smallest:\n_______\n");
+                    app.Cities_LargestToSmallest_World();
+                    inputNum = -1;
+                    break;
+                case 2:
+                    System.out.println("Cities in a region from largest to smallest:\n_______\n");
+                    app.Cities_LargestToSmallest_Region();
+                    inputNum = -1;
+                    break;
+                case 3:
+                    System.out.println("Cities in a continent from largest to smallest:");
+                    app.Cities_LargestToSmallest_Continent();
+                    inputNum = -1;
+                    break;
+                case 4:
+                    System.out.println("Cities in a country from largest to smallest:");
+                    app.Cities_LargestToSmallest_Country();
+                    inputNum = -1;
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please enter a number between -1 and 4.");
+                    inputNum = 0;
+                    break;
+            }
 
-    public static void CapCities_LargestToSmallest()
-    {
-        System.out.println("Selected: CapCities_LargestToSmallest");
+        }
+        scanner.close();
     }
-
-    public static void CapCities_TopPopulated()
-    {
-        System.out.println("Selected: CapCities_TopPopulated");
-    }
-
-    public static void Population_InAndOutOfCities()
-    {
-        System.out.println("Selected: Population_InAndOutOfCities");
-    }
-
-    public static void TotalPopulations()
-    {
-        System.out.println("Selected: TotalPopulations");
-    }
-
-    public static void Languages_GreatestToSmallest()
-    {
-        System.out.println("Selected: Languages_GreatestToSmallest");
-    }
-
-    public static void Exit()
-    {
-        System.out.println("Exiting....");
-        System.exit(0);
-    }
-
 }
