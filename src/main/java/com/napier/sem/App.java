@@ -120,15 +120,16 @@ public class App {
         }
     }
 
-    //Prints all cities from largest to smallest by population
+    //Prints all capital cities from largest to smallest by population
     public void CapitalCities_LargestToSmallest_World() {
         try {
 
             //SQL statement as a string
             String select =
-                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
-                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
-                            "ORDER BY population DESC";
+                    "SELECT ci.name AS Name, co.name AS Country, ci.population AS Population " +
+                            "FROM city ci JOIN country co ON ci.countryCode = co.code " +
+                            "WHERE ci.ID = co.capital " +
+                            "ORDER BY ci.population DESC";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
@@ -138,7 +139,6 @@ public class App {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Name") + ", "
                         + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
                         + resultSet.getString("Population"));
             }
         } catch (Exception e) {
@@ -159,10 +159,11 @@ public class App {
 
             //SQL statement as a string
             String select =
-                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
-                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
+                    "SELECT ci.name AS Name, co.name AS Country, ci.population AS Population " +
+                            "FROM city ci JOIN country co ON ci.countryCode = co.code " +
                             "WHERE co.region LIKE " + '"' + regionInput + '"' +
-                            "ORDER BY population DESC";
+                            "AND ci.ID = co.capital " +
+                            "ORDER BY ci.population DESC";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
@@ -172,7 +173,6 @@ public class App {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Name") + ", "
                         + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
                         + resultSet.getString("Population"));
             }
             scanner.close();
@@ -195,10 +195,11 @@ public class App {
 
             //SQL statement as a string
             String select =
-                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
-                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
+                    "SELECT ci.name AS Name, co.name AS Country, ci.population AS Population " +
+                            "FROM city ci JOIN country co ON ci.countryCode = co.code " +
                             "WHERE co.continent LIKE " + '"' + continentInput + '"' +
-                            "ORDER BY population DESC";
+                            "AND ci.ID = co.capital " +
+                            "ORDER BY ci.population DESC";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
@@ -208,7 +209,6 @@ public class App {
             while (resultSet.next()) {
                 System.out.println(resultSet.getString("Name") + ", "
                         + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
                         + resultSet.getString("Population"));
             }
             scanner.close();
