@@ -121,7 +121,7 @@ public class App {
     }
 
     //Prints all cities from largest to smallest by population
-    public void Cities_LargestToSmallest_World(boolean topPopulated) {
+    public void Cities_LargestToSmallest_World(boolean topNPopulated) {
         try {
 
             //SQL statement as a string
@@ -135,11 +135,26 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Name") + ", "
-                        + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
-                        + resultSet.getString("Population"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
+
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                    iterator++;
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -148,7 +163,7 @@ public class App {
     }
 
     //Prints cities in an inputted region from largest to smallest by population
-    public void Cities_LargestToSmallest_Region(boolean topPopulated) {
+    public void Cities_LargestToSmallest_Region(boolean topNPopulated) {
         try {
             System.out.println("Type region:");
 
@@ -169,11 +184,26 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Name") + ", "
-                        + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
-                        + resultSet.getString("Population"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
+
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                    iterator++;
+                }
             }
             scanner.close();
         } catch (Exception e) {
@@ -184,7 +214,7 @@ public class App {
     }
 
     //Prints cities in an inputted continent from largest to smallest by population
-    public void Cities_LargestToSmallest_Continent(boolean topPopulated) {
+    public void Cities_LargestToSmallest_Continent(boolean topNPopulated) {
         try {
             System.out.println("Type continent:");
 
@@ -205,11 +235,26 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Name") + ", "
-                        + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
-                        + resultSet.getString("Population"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
+
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                    iterator++;
+                }
             }
             scanner.close();
         } catch (Exception e) {
@@ -220,7 +265,7 @@ public class App {
     }
 
     //Prints cities in an inputted country from largest to smallest by population
-    public void Cities_LargestToSmallest_Country(boolean topPopulated) {
+    public void Cities_LargestToSmallest_Country(boolean topNPopulated) {
         try {
             System.out.println("Type country:");
 
@@ -241,11 +286,26 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Name") + ", "
-                        + resultSet.getString("Country") + ", "
-                        + resultSet.getString("District") + ", "
-                        + resultSet.getString("Population"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 110);
+                int iterator = 0;
+
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                    iterator++;
+                }
             }
             scanner.close();
         } catch (Exception e) {

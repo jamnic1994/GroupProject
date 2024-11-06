@@ -95,13 +95,21 @@ public class UI {
     }
 
     //Terminal UI for city questions
-    public void Cities_LargestToSmallest(boolean topPopulated) {
+    public void Cities_LargestToSmallest(boolean topNPopulated) {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
         while (inputNum != -1) {
+
+            if(topNPopulated){
+                System.out.println("Top N populated cities from largest to smallest: \n");
+            }
+            else{
+                System.out.println("Cities from largest to smallest: \n");
+            }
+
             System.out.print("\n ______________________________\n");
-            System.out.println("Cities from largest to smallest: \n" +
+            System.out.println(
                     "(1) Cities in world \n" +
                     "(2) Cities in region \n" +
                     "(3) Cities in continent \n" +
@@ -118,23 +126,47 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Cities of the world from largest to smallest:\n_______\n");
-                    app.Cities_LargestToSmallest_World(topPopulated);
+                    if(topNPopulated){
+                        System.out.println("Top N populated cities of the world from largest to smallest:\n_______\n");
+                    }
+                    else{
+                        System.out.println("Cities of the world from largest to smallest:\n_______\n");
+                    }
+
+                    app.Cities_LargestToSmallest_World(topNPopulated);
                     inputNum = -1;
                     break;
                 case 2:
-                    System.out.println("Cities in a region from largest to smallest:\n_______\n");
-                    app.Cities_LargestToSmallest_Region(topPopulated);
+                    if(topNPopulated){
+                        System.out.println("Top N populated cities in a region from largest to smallest:\n_______\n");
+                    }
+                    else{
+                        System.out.println("Cities in a region from largest to smallest:\n_______\n");
+                    }
+
+                    app.Cities_LargestToSmallest_Region(topNPopulated);
                     inputNum = -1;
                     break;
                 case 3:
-                    System.out.println("Cities in a continent from largest to smallest:");
-                    app.Cities_LargestToSmallest_Continent(topPopulated);
+                    if(topNPopulated){
+                        System.out.println("Top N populated cities in a continent from largest to smallest:");
+                    }
+                    else{
+                        System.out.println("Cities in a continent from largest to smallest:");
+                    }
+
+                    app.Cities_LargestToSmallest_Continent(topNPopulated);
                     inputNum = -1;
                     break;
                 case 4:
-                    System.out.println("Cities in a country from largest to smallest:");
-                    app.Cities_LargestToSmallest_Country(topPopulated);
+                    if(topNPopulated){
+                        System.out.println("Top N populated cities in a country from largest to smallest:");
+                    }
+                    else{
+                        System.out.println("Cities in a country from largest to smallest:");
+                    }
+
+                    app.Cities_LargestToSmallest_Country(topNPopulated);
                     inputNum = -1;
                     break;
                 case -1:
