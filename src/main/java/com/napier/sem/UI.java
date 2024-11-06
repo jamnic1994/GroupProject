@@ -57,15 +57,15 @@ public class UI {
                     break;
                 case 3:
                     System.out.println("Cities from largest to smallest:");
-                    Cities_LargestToSmallest();
+
                     break;
                 case 4:
                     System.out.println("Top N populated cities:");
                     // app.Cities_TopPopulated();
                     break;
                 case 5:
-                    System.out.println("Selected: CapCities_LargestToSmallest");
-                    // Add the actual logic for Capital cities from largest to smallest
+                    System.out.println("Capital Cities from largest to smallest:");
+                    CapitalCities_LargestToSmallest();
                     break;
                 case 6:
                     System.out.println("Selected: CapCities_TopPopulated");
@@ -94,18 +94,17 @@ public class UI {
         scanner.close();
     }
 
-    //Terminal UI for city questions
-    public void Cities_LargestToSmallest() {
+    //Terminal UI for capital city questions
+    public void CapitalCities_LargestToSmallest() {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
         while (inputNum != -1) {
             System.out.print("\n ______________________________\n");
             System.out.println("Cities from largest to smallest: \n" +
-                    "(1) Cities in world \n" +
-                    "(2) Cities in region \n" +
-                    "(3) Cities in continent \n" +
-                    "(4) Cities in continent \n" +
+                    "(1) Capital cities in world \n" +
+                    "(2) Capital cities in region \n" +
+                    "(3) Capital cities in continent \n" +
                     "(-1) Exit");
 
             System.out.print("Your choice: ");
@@ -118,23 +117,18 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Cities of the world from largest to smallest:\n_______\n");
-                    app.Cities_LargestToSmallest_World();
+                    System.out.println("Capital cities of the world from largest to smallest:\n_______\n");
+                    app.CapitalCities_LargestToSmallest_World();
                     inputNum = -1;
                     break;
                 case 2:
-                    System.out.println("Cities in a region from largest to smallest:\n_______\n");
-                    app.Cities_LargestToSmallest_Region();
+                    System.out.println("Capital cities in a region from largest to smallest:\n_______\n");
+                    app.CapitalCities_LargestToSmallest_Region();
                     inputNum = -1;
                     break;
                 case 3:
-                    System.out.println("Cities in a continent from largest to smallest:");
-                    app.Cities_LargestToSmallest_Continent();
-                    inputNum = -1;
-                    break;
-                case 4:
-                    System.out.println("Cities in a country from largest to smallest:");
-                    app.Cities_LargestToSmallest_Country();
+                    System.out.println("Capital cities in a continent from largest to smallest:");
+                    app.CapitalCities_LargestToSmallest_Continent();
                     inputNum = -1;
                     break;
                 case -1:
