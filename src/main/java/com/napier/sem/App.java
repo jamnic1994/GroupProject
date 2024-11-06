@@ -121,9 +121,8 @@ public class App {
     }
 
     //Prints all capital cities from largest to smallest by population
-    public void CapitalCities_LargestToSmallest_World() {
+    public void CapitalCities_LargestToSmallest_World(boolean topNPopulated) {
         try {
-
             //SQL statement as a string
             String select =
                     "SELECT ci.name AS Name, co.name AS Country, ci.population AS Population " +
@@ -136,10 +135,24 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Name") + ", "
-                        + resultSet.getString("Country") + ", "
-                        + resultSet.getString("Population"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("Population"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 300);
+                int iterator = 0;
+
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("Population"));
+                    iterator++;
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

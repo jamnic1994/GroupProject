@@ -64,12 +64,12 @@ public class UI {
                     // app.Cities_TopPopulated();
                     break;
                 case 5:
-                    System.out.println("Capital Cities from largest to smallest:");
-                    CapitalCities_LargestToSmallest();
+                    System.out.println("Capital cities from largest to smallest:");
+                    CapitalCities_LargestToSmallest(false);
                     break;
                 case 6:
-                    System.out.println("Selected: CapCities_TopPopulated");
-                    // Add the actual logic for Top N populated capital cities
+                    System.out.println("Top populated capital cities");
+                    CapitalCities_LargestToSmallest(true);
                     break;
                 case 7:
                     System.out.println("Selected: Population_InAndOutOfCities");
@@ -95,7 +95,7 @@ public class UI {
     }
 
     //Terminal UI for capital city questions
-    public void CapitalCities_LargestToSmallest() {
+    public void CapitalCities_LargestToSmallest(boolean topPopulated) {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
@@ -118,7 +118,7 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Capital cities of the world from largest to smallest:\n_______\n");
-                    app.CapitalCities_LargestToSmallest_World();
+                    app.CapitalCities_LargestToSmallest_World(topPopulated);
                     inputNum = -1;
                     break;
                 case 2:
@@ -142,5 +142,33 @@ public class UI {
 
         }
         scanner.close();
+    }
+
+    //Returns int for "Top N questions"
+    public int GetUserIntInput(int min, int max) {
+        //Setup scanner for user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Your choice: ");
+
+        int inputNum = 0;
+        while (inputNum != -1) {
+            try {
+                //Ensure intput is int and within range
+                inputNum = Integer.parseInt(scanner.nextLine());
+                if (inputNum <= min || inputNum >= max) {
+                    System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+                    inputNum = 0;
+                }
+                else{
+                    //Close scanner and return int if int is valid
+                    scanner.close();
+                    return inputNum;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+            }
+        }
+
+        return -1;
     }
 }
