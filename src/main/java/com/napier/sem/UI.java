@@ -117,18 +117,36 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Capital cities of the world from largest to smallest:\n_______\n");
+                    if(topPopulated) {
+                        System.out.println("Top N capital cities of the world from largest to smallest:\n_______\n");
+                    }
+                    else{
+                        System.out.println("Capital cities of the world from largest to smallest:\n_______\n");
+                    }
+
                     app.CapitalCities_LargestToSmallest_World(topPopulated);
                     inputNum = -1;
                     break;
                 case 2:
-                    System.out.println("Capital cities in a region from largest to smallest:\n_______\n");
-                    app.CapitalCities_LargestToSmallest_Region();
+                    if(topPopulated){
+                        System.out.println("Top N capital cities in a region from largest to smallest:\n_______\n");
+                    }
+                    else{
+                        System.out.println("Capital cities in a region from largest to smallest:\n_______\n");
+                    }
+
+                    app.CapitalCities_LargestToSmallest_Region(topPopulated);
                     inputNum = -1;
                     break;
                 case 3:
-                    System.out.println("Capital cities in a continent from largest to smallest:");
-                    app.CapitalCities_LargestToSmallest_Continent();
+                    if(topPopulated){
+                        System.out.println("Top N capital cities in a continent from largest to smallest:\n_______\n");
+                    }
+                    else{
+                        System.out.println("Capital cities in a continent from largest to smallest:\n_______\n");
+                    }
+
+                    app.CapitalCities_LargestToSmallest_Continent(topPopulated);
                     inputNum = -1;
                     break;
                 case -1:
@@ -148,7 +166,7 @@ public class UI {
     public int GetUserIntInput(int min, int max) {
         //Setup scanner for user input
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Your choice: ");
+        System.out.print("Number of results to display: ");
 
         int inputNum = 0;
         while (inputNum != -1) {
