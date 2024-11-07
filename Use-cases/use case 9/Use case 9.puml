@@ -1,0 +1,72 @@
+@startuml
+
+actor Organization as "Organization"
+
+rectangle Database
+
+rectangle "World Information System" {
+
+    usecase UC1 as "Get the number of people who speak chinese
+    from the greatest number to the smallest, including
+    the percentage of the world population."
+
+    usecase UC2 as "Get the number of people who speak english
+    from the greatest number to the smallest, including
+    the percentage of the world population."
+
+    usecase UC3 as "Get the number of people who speak hindi
+    from the greatest number to the smallest, including
+    the percentage of the world population."
+
+    usecase UC4 as "Get the number of people who speak spanish
+    from the greatest number to the smallest, including
+    the percentage of the world population."
+
+    usecase UC5 as "Get the number of people who speak arabic
+    from the greatest number to the smallest, including
+    the percentage of the world population."
+
+
+    usecase UCa as "Print report on the number of people
+    who speak chinese from greatest number to smallest,
+    including the percentage of the world population."
+
+    usecase UCb as "Print report on the number of people
+    who speak english from greatest number to smallest,
+    including the percentage of the world population."
+
+    usecase UCc as "Print report on the number of people
+    who speak hindi from greatest number to smallest,
+    including the percentage of the world population."
+
+    usecase UCd as "Print report on the number of people
+    who speak spanish from greatest number to smallest,
+    including the percentage of the world population."
+
+    usecase UCe as "Print report on the number of people
+    who speak arabic from greatest number to smallest,
+    including the percentage of the world population."
+
+    Organization - UC1
+    UC1 ..> UCa : include
+    UC1 - Database
+
+    Organization - UC2
+    UC2 ..> UCb : include
+    UC2 - Database
+
+    Organization - UC3
+    UC3 ..> UCc : include
+    UC3 - Database
+
+    Organization - UC4
+    UC4 ..> UCd : include
+    UC4 - Database
+
+    Organization - UC5
+    UC5 ..> UCe : include
+    UC5 - Database
+
+}
+
+@enduml
