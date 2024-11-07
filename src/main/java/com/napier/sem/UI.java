@@ -45,11 +45,14 @@ public class UI {
                     continue;  // Skip to the next iteration if input is invalid
                 }
             } else {
+                System.out.println("Running automated test for option 1");
+                RegionPopulationReport(); // Run option 1
                 // CI/CD mode: Automatically run only option 7
                 System.out.println("Running automated test for option 7");
                 inputNum = 7;
                 Population_InAndOutOfCities();
-                inputNum = -1;  // End the loop after automated test
+                inputNum = -1;  // End the loop after automated tests
+
             }
 
             // Validate the input range if not in CI/CD mode
@@ -60,7 +63,7 @@ public class UI {
 
             // Process the user input
             switch (inputNum) {
-                case 1: Countries_LargestToSmallest(); break;
+                case 1: RegionPopulationReport(); break;
                 case 2: Countries_TopPopulated(); break;
                 case 3: Cities_LargestToSmallest(); break;
                 case 4: Cities_TopPopulated(); break;
@@ -75,8 +78,9 @@ public class UI {
         scanner.close();  // Close the scanner to free resources
     }
 
-    public void Countries_LargestToSmallest() {
-        System.out.println("Selected: Countries_LargestToSmallest");
+    public void RegionPopulationReport() {
+        System.out.println("Selected: Regional Population Report");
+        app.RegionPopulationReport(); // Call the new report method from App
     }
 
     public void Countries_TopPopulated() {
