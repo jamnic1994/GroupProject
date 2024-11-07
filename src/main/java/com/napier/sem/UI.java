@@ -3,14 +3,23 @@ package com.napier.sem;
 
 import java.util.Scanner;
 
+/**
+ * Class to control the logic for the UI.
+ */
 public class UI {
 
     private final App app; // Reference to App to access database methods
 
+    /**
+     * Method to access the UI.
+     */
     public UI(App app) {
         this.app = app;
     }
 
+    /**
+     * Method to display and control the logic for the UI.
+     */
     public void startUI() {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
         int inputNum = 0;
@@ -116,6 +125,9 @@ public class UI {
         System.out.println("Selected: Languages_GreatestToSmallest");
     }
 
+    /**
+     * Method to exit the application.
+     */
     public void Exit() {
         System.out.println("Exiting....");
         System.exit(0);

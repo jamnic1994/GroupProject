@@ -88,7 +88,9 @@ public class App {
         }
     }
 
-    //generate population report
+    /**
+     * Method to generate population report.
+     */
     public void reportpopulation() {
         try{
             Statement stmt = con.createStatement();
@@ -126,6 +128,9 @@ public class App {
 
     }
 
+    /**
+     * Method to generate population report by region.
+     */
     public void RegionPopulationReport() {
         try {
             Statement stmt = con.createStatement();
@@ -160,7 +165,9 @@ public class App {
         }
     }
 
-    // Start of world.sql methods
+    /**
+     * Method to return the details for a city object.
+     */
     public City getCity(int ID)
     {
         try
@@ -198,6 +205,9 @@ public class App {
         }
     }
 
+    /**
+     * Method to display the details from a city.
+     */
     public void displayCity(City city)
     {
         if (city != null)
