@@ -49,11 +49,11 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Countries from largest to smallest:");
-                    Countries_LargestToSmallest();
+                    Countries_LargestToSmallest(false);
                     break;
                 case 2:
                     System.out.println("Top N populated countries:");
-                    app.Countries_TopPopulated();
+                    Countries_LargestToSmallest(true);
                     break;
                 case 3:
                     System.out.println("Selected: Cities_LargestToSmallest");
@@ -95,7 +95,7 @@ public class UI {
     }
 
     //Terminal UI for country questions
-    public void Countries_LargestToSmallest() {
+    public void Countries_LargestToSmallest(boolean topNPopulated) {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
@@ -118,17 +118,17 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Countries of the world from largest to smallest:\n_______\n");
-                    app.Countries_LargestToSmallest_World();
+                    app.Countries_LargestToSmallest_World(topNPopulated);
                     inputNum = -1;
                     break;
                 case 2:
                     System.out.println("Countries in a region from largest to smallest:\n_______\n");
-                    app.Countries_LargestToSmallest_Region();
+                    app.Countries_LargestToSmallest_Region(topNPopulated);
                     inputNum = -1;
                     break;
                 case 3:
                     System.out.println("Countries in a continent from largest to smallest:");
-                    app.Countries_LargestToSmallest_Continent();
+                    app.Countries_LargestToSmallest_Continent(topNPopulated);
                     inputNum = -1;
                     break;
                 case -1:
