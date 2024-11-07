@@ -1,0 +1,45 @@
+@startuml
+
+actor Organization as "Organization"
+
+rectangle Database
+
+rectangle "World Information System" {
+
+    usecase UC1 as "Get the population of people, people living in
+    cities, and people not living in cities in each continent."
+
+    usecase UC2 as "Get the population of people, people living in
+    cities, and people not living in cities in each region."
+
+    usecase UC3 as "Get the population of people, people living in
+    cities, and people not living in cities in each country."
+
+    usecase UCa as "Print report on the population of
+    people, people living in cities, and
+    people not living in cities in each continent."
+
+    usecase UCb as "Print report on the population of
+    people, people living in cities, and
+    people not living in cities in each region."
+
+    usecase UCc as "Print report on the population of
+    people, people living in cities, and
+    people not living in cities in each country."
+
+
+    Organization - UC1
+    UC1 ..> UCa : include
+    UC1 - Database
+
+    Organization - UC2
+    UC2 ..> UCb : include
+    UC2 - Database
+
+    Organization - UC3
+    UC3 ..> UCc : include
+    UC3 - Database
+
+}
+
+@enduml

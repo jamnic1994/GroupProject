@@ -1,0 +1,73 @@
+@startuml
+
+actor Organization as "Organization"
+
+rectangle Database
+
+rectangle "World Information System" {
+    usecase UC1 as "Get populations
+    of all the cities in the world organised
+    by largest population to smallest"
+
+    usecase UC2 as "Get population of all
+    the cities in a continent organised
+     by largest population to smallest"
+
+    usecase UC3 as "Get populations
+    of all the cities in a region
+    organised by largest population
+    to smallest"
+
+    usecase UC4 as "Get population
+    of all the cities in a country
+    organised by largest population
+    to smallest"
+
+    usecase UC5 as "Get populations of
+     all the cities in a district organised
+     by largest population to smallest."
+
+    usecase UCa as "Print report on populations
+    of all the cities in the world organised
+    by largest population to smallest."
+
+    usecase UCb as "Print report on all
+    the cities in a continent organised
+    by largest population to smallest"
+
+    usecase UCc as "Print report on all the
+    cities in a region organised by largest
+    population to smallest"
+
+    usecase UCd as "Print report on all the cities
+    in a country organised by largest population
+    to smallest"
+
+    usecase UCe as "Print report on all
+     the cities in a district organised
+     by largest population to smallest."
+
+    Organization - UC1
+    UC1 ..> UCa : include
+    UC1 - Database
+
+    Organization - UC2
+    UC2 ..> UCb : include
+    UC2 - Database
+
+    Organization - UC3
+    UC3 ..> UCc : include
+    UC3 - Database
+
+    Organization - UC4
+    UC4 ..> UCd : include
+    UC4 - Database
+
+    Organization - UC5
+    UC5 ..> UCe : include
+    UC5 - Database
+
+
+}
+
+@enduml

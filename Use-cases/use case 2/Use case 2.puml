@@ -1,0 +1,44 @@
+@startuml
+
+actor Organization as "Organization"
+
+rectangle Database
+
+rectangle "World Information System" {
+
+    usecase UC1 as "Get top N populated
+     countries in the world,
+     where N is provided
+     by the user"
+
+    usecase UC2 as "Get top N populated
+     countries in a specific continent,
+     where N is provided
+     by the user"
+
+    usecase UC3 as "Get top N populated
+    countries in a specific region,
+    where N is provided
+    by the user"
+
+    usecase UCa as "Print the N populated countries in the world."
+    usecase UCb as "Print the N populated countries in a specific continent."
+    usecase UCc as "Print the N populated countries in a specific region."
+
+
+    Organization - UC1
+    UC1 ..> UCa : include
+    UC1 - Database
+
+    Organization - UC2
+    UC2 ..> UCb : include
+    UC2 - Database
+
+    Organization - UC3
+    UC3 ..> UCc : include
+    UC3 - Database
+
+
+}
+
+@enduml
