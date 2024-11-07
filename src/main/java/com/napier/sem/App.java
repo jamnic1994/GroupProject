@@ -2,7 +2,7 @@
  * Application Created by 40690819, 40664564, 40650822, 40592313
  * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
  * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
-**/
+ **/
 package com.napier.sem;
 
 import java.sql.*;
@@ -126,6 +126,40 @@ public class App {
 
     }
 
+    public void RegionPopulationReport() {
+        try {
+            Statement stmt = con.createStatement();
+
+            //SQL queryto get population details by region
+            String strQuery = "SELECT c.Region AS Region, " +
+                    "SUM(cty.Population) AS UrbanPopulation, " +
+                    "SUM(c.Population) AS TotalPopulation, " +
+                    "SUM(c.Population) - SUM(cty.Population) AS RuralPopulation " +
+                    "FROM country c " +
+                    "JOIN  city  cty ON cty.CountryCode = c.Code " +
+                    "GROUP BY c.Region " +
+                    "ORDER BY c.Region;";
+
+            ResultSet rset = stmt.executeQuery(strQuery);
+
+            // display report
+            System.out.println("Region\t\tTotal Population\tUrban Population\tRural Population");
+
+            //results
+            while (rset.next()) {
+                String region = rset.getString("Region");
+                long totalPopulation = rset.getLong("TotalPopulation");
+                long urbanPopulation =  rset.getLong("UrbanPopulation");
+                long ruralPopulation = rset.getLong("RuralPopulation");
+
+                // display the results for each region
+                System.out.printf("%-15s\t%-15d\t%-15d\t%-15d%n", region, totalPopulation, urbanPopulation, ruralPopulation);
+            }
+        } catch (SQLException e){
+            System.out.println("Error generating regional population report: " + e.getMessage());
+        }
+    }
+
     // Start of world.sql methods
     public City getCity(int ID)
     {
@@ -137,7 +171,7 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT * FROM city "
-                    + "WHERE id  = " + ID;
+                            + "WHERE id  = " + ID;
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -169,11 +203,11 @@ public class App {
         if (city != null)
         {
             System.out.println(
-                "City ID: " + city.city_id + "\n"
-                + "City Name: " +  city.name + "\n"
-                + "City Country Code: " +  city.countryCode + "\n"
-                + "City District: " +  city.district + "\n"
-                + "City Population: " +  city.population + "\n"
+                    "City ID: " + city.city_id + "\n"
+                            + "City Name: " +  city.name + "\n"
+                            + "City Country Code: " +  city.countryCode + "\n"
+                            + "City District: " +  city.district + "\n"
+                            + "City Population: " +  city.population + "\n"
             );
         }
     }
