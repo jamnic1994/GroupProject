@@ -36,22 +36,23 @@ public class UI {
                     "(-1) Exit");
 
             // Handle input based on environment mode
-            if (!isCICD) {
-                System.out.print("Your choice: ");  // Prompt for input
-                try {
-                    inputNum = Integer.parseInt(scanner.nextLine());  // Read input and parse it
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a valid integer.");
-                    continue;  // Skip to the next iteration if input is invalid
-                }
-            } else {
-                System.out.println("Running automated test for option 1");
-                RegionPopulationReport(); // Run option 1
-                // CI/CD mode: Automatically run only option 7
-                System.out.println("Running automated test for option 7");
-                inputNum = 7;
-                Population_InAndOutOfCities();
-                inputNum = -1;  // End the loop after automated tests
+           if (!isCICD) {
+    System.out.print("Your choice: ");
+    try {
+        inputNum = Integer.parseInt(scanner.nextLine());
+    } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter a valid integer.");
+        continue;
+    }
+} else {
+    // CI/CD mode: Run both automated tests
+    System.out.println("Running automated test for option 1");
+    RegionPopulationReport();
+    System.out.println("Running automated test for option 7");
+    inputNum = 7;
+    Population_InAndOutOfCities();
+    inputNum = -1;  // End the loop after automated tests
+}
 
             }
 
@@ -78,9 +79,11 @@ public class UI {
         scanner.close();  // Close the scanner to free resources
     }
 
+
     public void RegionPopulationReport() {
         System.out.println("Selected: Regional Population Report");
         app.RegionPopulationReport(); // Call the new report method from App
+
     }
 
     public void Countries_TopPopulated() {
