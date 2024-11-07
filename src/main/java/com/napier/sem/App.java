@@ -160,14 +160,30 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Code") + ", "
-                        + resultSet.getString("Name") + ", "
-                        + resultSet.getString("Continent") + ", "
-                        + resultSet.getString("Region") + ", "
-                        + resultSet.getString("Population") + ", "
-                        + resultSet.getString("Capital"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Code") + ", "
+                            + resultSet.getString("Name") + ", "
+                            + resultSet.getString("Continent") + ", "
+                            + resultSet.getString("Region") + ", "
+                            + resultSet.getString("Population") + ", "
+                            + resultSet.getString("Capital"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
 
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Code") + ", "
+                            + resultSet.getString("Name") + ", "
+                            + resultSet.getString("Continent") + ", "
+                            + resultSet.getString("Region") + ", "
+                            + resultSet.getString("Population") + ", "
+                            + resultSet.getString("Capital"));
+                    iterator++;
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -197,14 +213,30 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Code") + ", "
-                        + resultSet.getString("Name") + ", "
-                        + resultSet.getString("Continent") + ", "
-                        + resultSet.getString("Region") + ", "
-                        + resultSet.getString("Population") + ", "
-                        + resultSet.getString("Capital"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Code") + ", "
+                            + resultSet.getString("Name") + ", "
+                            + resultSet.getString("Continent") + ", "
+                            + resultSet.getString("Region") + ", "
+                            + resultSet.getString("Population") + ", "
+                            + resultSet.getString("Capital"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
 
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Code") + ", "
+                            + resultSet.getString("Name") + ", "
+                            + resultSet.getString("Continent") + ", "
+                            + resultSet.getString("Region") + ", "
+                            + resultSet.getString("Population") + ", "
+                            + resultSet.getString("Capital"));
+                    iterator++;
+                }
             }
             scanner.close();
         } catch (Exception e) {
@@ -238,15 +270,32 @@ public class App {
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("Code") + ", "
-                        + resultSet.getString("Name") + ", "
-                        + resultSet.getString("Continent") + ", "
-                        + resultSet.getString("Region") + ", "
-                        + resultSet.getString("Population") + ", "
-                        + resultSet.getString("Capital"));
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Code") + ", "
+                            + resultSet.getString("Name") + ", "
+                            + resultSet.getString("Continent") + ", "
+                            + resultSet.getString("Region") + ", "
+                            + resultSet.getString("Population") + ", "
+                            + resultSet.getString("Capital"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
 
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Code") + ", "
+                            + resultSet.getString("Name") + ", "
+                            + resultSet.getString("Continent") + ", "
+                            + resultSet.getString("Region") + ", "
+                            + resultSet.getString("Population") + ", "
+                            + resultSet.getString("Capital"));
+                    iterator++;
+                }
             }
+
             scanner.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -254,7 +303,6 @@ public class App {
         }
 
     }
-
 
 }
 

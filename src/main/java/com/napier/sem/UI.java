@@ -52,7 +52,7 @@ public class UI {
                     Countries_LargestToSmallest(false);
                     break;
                 case 2:
-                    System.out.println("Top N populated countries:");
+                    System.out.println("Top N populated countries from largest to smallest:");
                     Countries_LargestToSmallest(true);
                     break;
                 case 3:
@@ -101,11 +101,10 @@ public class UI {
 
         while (inputNum != -1) {
             System.out.print("\n ______________________________\n");
-            System.out.println("Countries from largest to smallest: \n" +
-                    "(1) Countries in world \n" +
-                    "(2) Countries in region \n" +
-                    "(3) Countries in continent \n" +
-                    "(-1) Exit");
+            System.out.println("(1) Countries in world \n" +
+                            "(2) Countries in a region \n" +
+                            "(3) Countries in a continent \n" +
+                            "(-1) Exit");
 
             System.out.print("Your choice: ");
             try {
@@ -117,17 +116,33 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Countries of the world from largest to smallest:\n_______\n");
+                    if (topNPopulated) {
+                        System.out.println("Top N countries of the world from largest to smallest:\n_______\n");
+                    } else {
+                        System.out.println("Countries of the world from largest to smallest:\n_______\n");
+
+                    }
                     app.Countries_LargestToSmallest_World(topNPopulated);
                     inputNum = -1;
                     break;
                 case 2:
-                    System.out.println("Countries in a region from largest to smallest:\n_______\n");
+                    if (topNPopulated) {
+                        System.out.println("Top N countries in a region from largest to smallest:\n_______\n");
+
+                    } else {
+                        System.out.println("Countries in a region from largest to smallest:\n_______\n");
+
+                    }
                     app.Countries_LargestToSmallest_Region(topNPopulated);
                     inputNum = -1;
                     break;
                 case 3:
-                    System.out.println("Countries in a continent from largest to smallest:");
+                    if (topNPopulated) {
+                        System.out.println("Top N countries in a continent from largest to smallest:");
+                    } else {
+                        System.out.println("Countries in a continent from largest to smallest:");
+                    }
+
                     app.Countries_LargestToSmallest_Continent(topNPopulated);
                     inputNum = -1;
                     break;
