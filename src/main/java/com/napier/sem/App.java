@@ -2,24 +2,22 @@
  * Application Created by 40690819, 40664564, 40650822, 40592313
  * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
  * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
-**/
+ **/
 package com.napier.sem;
 
 import java.sql.*;
 
-public class App
-{
-    public static void main(String[] args)
-    {
+public class App {
+    public static void main(String[] args) {
         // Create class objects
         App a = new App();
-        UI ui = new UI();
+        UI ui = new UI(a);
 
         // Connect to database
         a.connect();
 
         // Run the console menu
-        UI.UI();
+        ui.startUI();
 
         // Disconnect from database
         a.disconnect();
@@ -90,6 +88,44 @@ public class App
         }
     }
 
+    //generate population report
+    public void reportpopulation() {
+        try{
+            Statement stmt = con.createStatement();
+
+            //sql to get the total of urban population by country
+            String strQuery = "Select c.Name AS Country, " +
+                    "SUM(cty.Population) AS UrbanPopulation, " +
+                    "c.Population AS TotalPopulation, " +
+                    "c.Population - SUM(cty.Population) AS RuralPopulation " +
+                    "FROM country c " +
+                    "JOIN city cty on cty.CountryCode = c.Code " +
+                    "GROUP BY c.Name, c.Population " +
+                    "ORDER BY c.Name;";
+
+            ResultSet rset = stmt.executeQuery(strQuery);
+
+            //display report
+            System.out.println("Country\t\tTotal Population\tUrban Population\tRural Population");
+
+            // results
+            while (rset.next()){
+                String country = rset.getString("Country");
+                int totalPopulation = rset.getInt("TotalPopulation");
+                int urbanPopulation = rset.getInt("UrbanPopulation");
+                int ruralPopulation = rset.getInt("RuralPopulation");
+
+                //display results for each country
+                System.out.printf("%-15s\t%-15d\t%-15d\t%-15d%n", country, totalPopulation,urbanPopulation,ruralPopulation);
+            }
+
+        }catch (SQLException e){
+            System.out.println("Error generating population report: " + e.getMessage());
+        }
+
+
+    }
+
     // Start of world.sql methods
     public City getCity(int ID)
     {
@@ -101,7 +137,7 @@ public class App
             // Create string for SQL statement
             String strSelect =
                     "SELECT * FROM city "
-                    + "WHERE id  = " + ID;
+                            + "WHERE id  = " + ID;
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -123,7 +159,7 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get details");
             return null;
         }
     }
@@ -133,11 +169,11 @@ public class App
         if (city != null)
         {
             System.out.println(
-                "City ID: " + city.city_id + "\n"
-                + "City Name: " +  city.name + "\n"
-                + "City Country Code: " +  city.countryCode + "\n"
-                + "City District: " +  city.district + "\n"
-                + "City Population: " +  city.population + "\n"
+                    "City ID: " + city.city_id + "\n"
+                            + "City Name: " +  city.name + "\n"
+                            + "City Country Code: " +  city.countryCode + "\n"
+                            + "City District: " +  city.district + "\n"
+                            + "City Population: " +  city.population + "\n"
             );
         }
     }

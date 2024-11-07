@@ -1,10 +1,17 @@
+
 package com.napier.sem;
 
 import java.util.Scanner;
 
 public class UI {
 
-    public static void UI() {
+    private final App app; // Reference to App to access database methods
+
+    public UI(App app) {
+        this.app = app;
+    }
+
+    public void startUI() {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
         int inputNum = 0;
 
@@ -38,25 +45,11 @@ public class UI {
                     continue;  // Skip to the next iteration if input is invalid
                 }
             } else {
-                // CI/CD mode: Automatically run tests for options 1 to 9
-                for (int testInput = 1; testInput <= 9; testInput++) {
-                    System.out.println("Running automated test for option " + testInput);
-                    inputNum = testInput;
-
-                    // Process the test input
-                    switch (inputNum) {
-                        case 1: Countries_LargestToSmallest(); break;
-                        case 2: Countries_TopPopulated(); break;
-                        case 3: Cities_LargestToSmallest(); break;
-                        case 4: Cities_TopPopulated(); break;
-                        case 5: CapCities_LargestToSmallest(); break;
-                        case 6: CapCities_TopPopulated(); break;
-                        case 7: Population_InAndOutOfCities(); break;
-                        case 8: TotalPopulations(); break;
-                        case 9: Languages_GreatestToSmallest(); break;
-                    }
-                }
-                inputNum = -1;  // End the loop after automated tests
+                // CI/CD mode: Automatically run only option 7
+                System.out.println("Running automated test for option 7");
+                inputNum = 7;
+                Population_InAndOutOfCities();
+                inputNum = -1;  // End the loop after automated test
             }
 
             // Validate the input range if not in CI/CD mode
@@ -82,55 +75,45 @@ public class UI {
         scanner.close();  // Close the scanner to free resources
     }
 
-    public static void Countries_LargestToSmallest()
-    {
+    public void Countries_LargestToSmallest() {
         System.out.println("Selected: Countries_LargestToSmallest");
     }
 
-    public static void Countries_TopPopulated()
-    {
+    public void Countries_TopPopulated() {
         System.out.println("Selected: Countries_TopPopulated");
     }
 
-    public static void Cities_LargestToSmallest()
-    {
+    public void Cities_LargestToSmallest() {
         System.out.println("Selected: Cities_LargestToSmallest");
     }
 
-    public static void Cities_TopPopulated()
-    {
+    public void Cities_TopPopulated() {
         System.out.println("Selected: Cities_TopPopulated");
     }
 
-    public static void CapCities_LargestToSmallest()
-    {
+    public void CapCities_LargestToSmallest() {
         System.out.println("Selected: CapCities_LargestToSmallest");
     }
 
-    public static void CapCities_TopPopulated()
-    {
+    public void CapCities_TopPopulated() {
         System.out.println("Selected: CapCities_TopPopulated");
     }
 
-    public static void Population_InAndOutOfCities()
-    {
+    public void Population_InAndOutOfCities() {
         System.out.println("Selected: Population_InAndOutOfCities");
+        app.reportpopulation(); // Call reportpopulation from App
     }
 
-    public static void TotalPopulations()
-    {
+    public void TotalPopulations() {
         System.out.println("Selected: TotalPopulations");
     }
 
-    public static void Languages_GreatestToSmallest()
-    {
+    public void Languages_GreatestToSmallest() {
         System.out.println("Selected: Languages_GreatestToSmallest");
     }
 
-    public static void Exit()
-    {
+    public void Exit() {
         System.out.println("Exiting....");
         System.exit(0);
     }
-
 }
