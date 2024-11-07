@@ -143,4 +143,31 @@ public class UI {
         }
         scanner.close();
     }
+
+    //Returns int for "Top N questions"
+    public int GetUserIntInput(int min, int max) {
+        //Setup scanner for user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Number of results to display: ");
+
+        int inputNum = 0;
+        while (inputNum != -1) {
+            try {
+                //Ensure intput is int and within range
+                inputNum = Integer.parseInt(scanner.nextLine());
+                if (inputNum <= min || inputNum >= max) {
+                    System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+                    inputNum = 0;
+                } else {
+                    //Close scanner and return int if int is valid
+                    scanner.close();
+                    return inputNum;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+            }
+        }
+
+        return -1;
+    }
 }
