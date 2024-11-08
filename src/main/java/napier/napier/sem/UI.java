@@ -1,37 +1,25 @@
-
-package napier.napier.sem;
+/**
+ * Application Created by 40690819, 40664564,40592313
+ * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
+ * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
+ **/
+package com.napier.sem;
 
 import java.util.Scanner;
 
-/**
- * Class to control the logic for the UI.
- */
 public class UI {
+    private App app;
 
-    private final App app; // Reference to App to access database methods
-
-    /**
-     * Method to access the UI.
-     */
+    // Constructor that accepts an App instance with an active connection
     public UI(App app) {
         this.app = app;
     }
 
-    /**
-     * Method to display and control the logic for the UI.
-     */
-    public void startUI() {
-        Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
+    public void UI() {
+        Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
-        String ciEnv = System.getenv("CI");
-        boolean isCICD = ciEnv != null && ciEnv.equals("True");
-        System.out.println("CI Environment Variable: " + ciEnv);  // Debugging output
-        System.out.println("Is CI/CD: " + isCICD);  // Debugging output
-
-        // Main loop for user interaction
         while (inputNum != -1) {
-            // Print the menu in both interactive and CI/CD mode
             System.out.print("\n _____________________________________________________________\n");
             System.out.println("Enter question number to receive answer: \n" +
                     "(1) Countries from largest to smallest \n" +
@@ -45,92 +33,151 @@ public class UI {
                     "(9) Language speakers from greatest to smallest \n" +
                     "(-1) Exit");
 
-            // Handle input based on environment mode
-            if (!isCICD) {
-                System.out.print("Your choice: ");  // Prompt for input
-                try {
-                    inputNum = Integer.parseInt(scanner.nextLine());  // Read input and parse it
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a valid integer.");
-                    continue;  // Skip to the next iteration if input is invalid
-                }
-            } else {
-                System.out.println("Running automated test for option 1");
-                RegionPopulationReport(); // Run option 1
-                // CI/CD mode: Automatically run only option 7
-                System.out.println("Running automated test for option 7");
-                inputNum = 7;
-                Population_InAndOutOfCities();
-                inputNum = -1;  // End the loop after automated tests
-
+            System.out.print("Your choice: ");
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
             }
 
-            // Validate the input range if not in CI/CD mode
             if (inputNum < -1 || inputNum > 9) {
                 System.out.println("Invalid input. Please enter a number between -1 and 9.");
-                continue;  // Skip to the next iteration for invalid inputs
+                continue;
             }
 
-            // Process the user input
             switch (inputNum) {
-                case 1: RegionPopulationReport(); break;
-                case 2: Countries_TopPopulated(); break;
-                case 3: Cities_LargestToSmallest(); break;
-                case 4: Cities_TopPopulated(); break;
-                case 5: CapCities_LargestToSmallest(); break;
-                case 6: CapCities_TopPopulated(); break;
-                case 7: Population_InAndOutOfCities(); break;
-                case 8: TotalPopulations(); break;
-                case 9: Languages_GreatestToSmallest(); break;
-                case -1: Exit(); break;  // Exit on -1
+                case 1:
+                    System.out.println("Countries from largest to smallest:");
+                    // Countries_LargestToSmallest();
+                    break;
+                case 2:
+                    System.out.println("Selected: Countries_TopPopulated");
+                    // Add the actual logic for Top N populated countries
+                    break;
+                case 3:
+                    System.out.println("Cities from largest to smallest:");
+
+                    break;
+                case 4:
+                    System.out.println("Top N populated cities:");
+
+                    break;
+                case 5:
+                    System.out.println("Selected: CapCities_LargestToSmallest");
+                    // Add the actual logic for Capital cities from largest to smallest
+                    break;
+                case 6:
+                    System.out.println("Selected: CapCities_TopPopulated");
+                    // Add the actual logic for Top N populated capital cities
+                    break;
+                case 7:
+                    System.out.println("Selected: Population_InAndOutOfCities");
+                    // Add the actual logic for Population in and out of cities
+                    break;
+                case 8:
+                    System.out.println("Total populations: ");
+                    TotalPopulations();
+                    break;
+                case 9:
+                    System.out.println("Selected: Languages_GreatestToSmallest");
+                    // Add the actual logic for Language speakers from greatest to smallest
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Feature not yet implemented.");
             }
         }
-        scanner.close();  // Close the scanner to free resources
+        scanner.close();
     }
 
-    public void RegionPopulationReport() {
-        System.out.println("Selected: Regional Population Report");
-        app.RegionPopulationReport(); // Call the new report method from App
-    }
-
-    public void Countries_TopPopulated() {
-        System.out.println("Selected: Countries_TopPopulated");
-    }
-
-    public void Cities_LargestToSmallest() {
-        System.out.println("Selected: Cities_LargestToSmallest");
-    }
-
-    public void Cities_TopPopulated() {
-        System.out.println("Selected: Cities_TopPopulated");
-    }
-
-    public void CapCities_LargestToSmallest() {
-        System.out.println("Selected: CapCities_LargestToSmallest");
-    }
-
-    public void CapCities_TopPopulated() {
-        System.out.println("Selected: CapCities_TopPopulated");
-    }
-
-    public void Population_InAndOutOfCities() {
-        System.out.println("Selected: Population_InAndOutOfCities");
-        app.reportpopulation(); // Call reportpopulation from App
-    }
-
+    //Terminal UI for city questions
     public void TotalPopulations() {
-        System.out.println("Selected: TotalPopulations");
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        while (inputNum != -1) {
+
+            System.out.print(" \n______________________________\n");
+            System.out.println(
+                    "(1) Population of the world \n" +
+                            "(2) Population of a region \n" +
+                            "(3) Population of a continent \n" +
+                            "(4) Population of a country \n" +
+                            "(4) Population of a city \n" +
+                            "(4) Population of a district \n" +
+                            "(-1) Exit");
+
+            System.out.print("Your choice: ");
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Population of the world:\n_______\n");
+
+                    inputNum = -1;
+                    break;
+                case 2:
+                    System.out.println("Population of a continent:\n_______\n");
+                    inputNum = -1;
+                    break;
+                case 3:
+                    System.out.println("Population of a country:\n_______\n");
+                    inputNum = -1;
+                    break;
+                case 4:
+                    System.out.println("Population of a city:\n_______\n");
+                    inputNum = -1;
+                    break;
+                case 5:
+                    System.out.println("Population of a district:\n_______\n");
+                    inputNum = -1;
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please enter a number between -1 and 4.");
+                    inputNum = 0;
+                    break;
+            }
+
+        }
+        scanner.close();
     }
 
-    public void Languages_GreatestToSmallest() {
-        System.out.println("Selected: Languages_GreatestToSmallest");
-    }
+    //Returns int for "Top N questions"
+    public int GetUserIntInput(int min, int max) {
+        //Setup scanner for user input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Number of results to display: ");
 
-    /**
-     * Method to exit the application.
-     */
-    public void Exit() {
-        System.out.println("Exiting....");
-        System.exit(0);
+        int inputNum = 0;
+        while (inputNum != -1) {
+            try {
+                //Ensure intput is int and within range
+                inputNum = Integer.parseInt(scanner.nextLine());
+                if (inputNum <= min || inputNum >= max) {
+                    System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+                    inputNum = 0;
+                } else {
+                    //Close scanner and return int if int is valid
+                    scanner.close();
+                    return inputNum;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
+            }
+        }
+
+        return -1;
     }
 }

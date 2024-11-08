@@ -161,7 +161,7 @@ public class App {
     }
 
     //Prints population of the world
-    public void Population_World(boolean topNPopulated) {
+    public void Population_World() {
         try {
 
             //SQL statement as a string
