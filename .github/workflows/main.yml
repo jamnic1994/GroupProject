@@ -3,8 +3,10 @@ on: push
 
 jobs:
   build:
-    name: Hello world action
+    name: World Database Application
     runs-on: ubuntu-20.04
+    env: # Define global environment variables
+      CI: true  # This sets the CI variable to true
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,8 +22,7 @@ jobs:
       - name: Unit Tests
         run: mvn -Dtest=napier.com.sem.AppTest test
       - name: Package and Run docker compose
-        env: # Define global environment variables
-          CI: true  # This sets the CI variable to true
         run: |
+          env
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
