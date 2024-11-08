@@ -175,65 +175,51 @@ public class App {
         }
     }
 
-    /**
-     * Method to return the details for a city object.
-     */
-    public City getCity(int ID)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
+    //Prints all cities from largest to smallest by population
+    public void Cities_LargestToSmallest_World(boolean topNPopulated) {
+        try {
 
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT * FROM city "
-                            + "WHERE id  = " + ID;
+            //SQL statement as a string
+            String select =
+                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
+                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
+                            "ORDER BY population DESC";
 
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
 
-            // Check if a result is returned
-            if (rset.next())
-            {
-                City city = new City();
-                city.city_id = rset.getInt("ID");
-                city.name = rset.getString("Name");
-                city.countryCode = rset.getString("CountryCode");
-                city.district = rset.getString("District");
-                city.population = rset.getInt("Population");
-                return city;
+            //Print SQL results
+            if (!topNPopulated) {
+                while (resultSet.next()) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                }
+            } else {
+                UI ui = new UI(this);
+                //Get 'N'
+                /*
+                int resultCap = ui.GetUserIntInput(1, 10000);
+                int iterator = 0;
+
+                while (resultSet.next() && iterator < resultCap) {
+                    System.out.println(resultSet.getString("Name") + ", "
+                            + resultSet.getString("Country") + ", "
+                            + resultSet.getString("District") + ", "
+                            + resultSet.getString("Population"));
+                    iterator++;
+
+
+                }
+                */
+
             }
-            else{
-                return null;
-            }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get details");
-            return null;
+            System.out.println("Failed to print cities");
         }
     }
 
-    /**
-     * Method to display the details from a city.
-     *
-     * @return
-     */
-    public String displayCity(City city)
-    {
-        if (city != null) {
-            return "City ID: " + city.city_id + "\n"
-                    + "City Name: " + city.name + "\n"
-                    + "City Country Code: " + city.countryCode + "\n"
-                    + "City District: " + city.district + "\n"
-                    + "City Population: " + city.population + "\n";
-        }
-        else if (city == null){
-
-            return "No city found.";
-
-        } return null;
-    }
 }
