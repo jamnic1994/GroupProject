@@ -24,8 +24,9 @@ public class UI {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
         int inputNum = 0;
 
-        // Check if running in CI/CD environment
-        boolean isCICD = System.getenv("CI") != null && System.getenv("CI").equals("true");  // This assumes a CI environment variable is set
+        String ciEnv = System.getenv("CI");
+        boolean isCICD = ciEnv != null && ciEnv.equals("true");
+        System.out.println("CI Environment Variable: " + ciEnv);  // Debugging output
         System.out.println("Is CI/CD: " + isCICD);  // Debugging output
 
         // Main loop for user interaction
