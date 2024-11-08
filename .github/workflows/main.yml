@@ -19,7 +19,9 @@ jobs:
           distribution: 'adopt'
       - name: Print environment variables
         run: env  # This will print all environment variables to the log
-      - name: Build with Maven
-        run: mvn package
-      - name: Run docker compose
-        run: CI=true docker compose up --abort-on-container-exit
+      - name: Unit Tests
+        run: mvn -Dtest=com.napier.sem.AppTest test
+      - name: Package and Run docker compose
+        run: |
+          mvn package -DskipTests
+          docker compose up --abort-on-container-exit

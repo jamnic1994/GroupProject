@@ -1,5 +1,5 @@
 
-package com.napier.sem;
+package napier.napier.sem;
 
 import java.util.Scanner;
 

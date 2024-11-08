@@ -3,11 +3,12 @@
  * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
  * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
  **/
-package com.napier.sem;
+package napier.napier.sem;
 
 import java.sql.*;
 
 public class App {
+
     public static void main(String[] args) {
         // Create class objects
         App a = new App();
@@ -27,6 +28,15 @@ public class App {
      * Connection to MySQL database.
      */
     private Connection con = null;
+
+    /**
+     * Getter for the database connection.
+     *
+     * @return Connection object, or null if not connected.
+     */
+    public Connection getCon() {
+        return con;
+    }
 
     /**
      * Connect to the MySQL database.
@@ -135,7 +145,7 @@ public class App {
         try {
             Statement stmt = con.createStatement();
 
-            //SQL queryto get population details by region
+            //SQL query to get population details by region
             String strQuery = "SELECT c.Region AS Region, " +
                     "SUM(cty.Population) AS UrbanPopulation, " +
                     "SUM(c.Population) AS TotalPopulation, " +
@@ -194,8 +204,9 @@ public class App {
                 city.population = rset.getInt("Population");
                 return city;
             }
-            else
+            else{
                 return null;
+            }
         }
         catch (Exception e)
         {
@@ -207,18 +218,22 @@ public class App {
 
     /**
      * Method to display the details from a city.
+     *
+     * @return
      */
-    public void displayCity(City city)
+    public String displayCity(City city)
     {
-        if (city != null)
-        {
-            System.out.println(
-                    "City ID: " + city.city_id + "\n"
-                            + "City Name: " +  city.name + "\n"
-                            + "City Country Code: " +  city.countryCode + "\n"
-                            + "City District: " +  city.district + "\n"
-                            + "City Population: " +  city.population + "\n"
-            );
+        if (city != null) {
+            return "City ID: " + city.city_id + "\n"
+                    + "City Name: " + city.name + "\n"
+                    + "City Country Code: " + city.countryCode + "\n"
+                    + "City District: " + city.district + "\n"
+                    + "City Population: " + city.population + "\n";
         }
+        else if (city == null){
+
+            return "No city found.";
+
+        } return null;
     }
 }
