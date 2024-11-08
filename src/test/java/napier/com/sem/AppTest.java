@@ -33,12 +33,18 @@ public class AppTest
     }
 
     @Test
-    void displayCityTest() {
+    void displayCityTestNotNull() {
 
         String result = app.displayCity(city);
 
         // Assert that the result is not null
         assertNotNull(result);
+    }
+
+    @Test
+    void displayCityTestContains() {
+
+        String result = app.displayCity(city);
 
         // Assert that the result contains the expected city details
         assertTrue(result.contains("City ID: 1"));
