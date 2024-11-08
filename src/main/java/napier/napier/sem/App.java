@@ -41,39 +41,29 @@ public class App {
     /**
      * Connect to the MySQL database.
      */
-    public void connect()
-    {
-        try
-        {
+    public void connect() {
+        try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
-        for (int i = 0; i < retries; ++i)
-        {
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
-            }
-            catch (SQLException sqle)
-            {
+            } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -82,17 +72,12 @@ public class App {
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
+    public void disconnect() {
+        if (con != null) {
+            try {
                 // Close connection
                 con.close();
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
         }
@@ -102,7 +87,7 @@ public class App {
      * Method to generate population report.
      */
     public void reportpopulation() {
-        try{
+        try {
             Statement stmt = con.createStatement();
 
             //sql to get the total of urban population by country
@@ -121,17 +106,17 @@ public class App {
             System.out.println("Country\t\tTotal Population\tUrban Population\tRural Population");
 
             // results
-            while (rset.next()){
+            while (rset.next()) {
                 String country = rset.getString("Country");
                 int totalPopulation = rset.getInt("TotalPopulation");
                 int urbanPopulation = rset.getInt("UrbanPopulation");
                 int ruralPopulation = rset.getInt("RuralPopulation");
 
                 //display results for each country
-                System.out.printf("%-15s\t%-15d\t%-15d\t%-15d%n", country, totalPopulation,urbanPopulation,ruralPopulation);
+                System.out.printf("%-15s\t%-15d\t%-15d\t%-15d%n", country, totalPopulation, urbanPopulation, ruralPopulation);
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error generating population report: " + e.getMessage());
         }
 
@@ -164,58 +149,32 @@ public class App {
             while (rset.next()) {
                 String region = rset.getString("Region");
                 long totalPopulation = rset.getLong("TotalPopulation");
-                long urbanPopulation =  rset.getLong("UrbanPopulation");
+                long urbanPopulation = rset.getLong("UrbanPopulation");
                 long ruralPopulation = rset.getLong("RuralPopulation");
 
                 // display the results for each region
                 System.out.printf("%-15s\t%-15d\t%-15d\t%-15d%n", region, totalPopulation, urbanPopulation, ruralPopulation);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Error generating regional population report: " + e.getMessage());
         }
     }
 
-    //Prints all cities from largest to smallest by population
-    public void Cities_LargestToSmallest_World(boolean topNPopulated) {
+    //Prints population of the world
+    public void Population_World(boolean topNPopulated) {
         try {
 
             //SQL statement as a string
             String select =
-                    "SELECT ci.name, co.name AS Country, ci.district, ci.population " +
-                            "FROM city ci INNER JOIN country co ON ci.countryCode = co.code " +
-                            "ORDER BY population DESC";
+                    "SELECT SUM(population) AS Population " +
+                            "FROM country";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            if (!topNPopulated) {
-                while (resultSet.next()) {
-                    System.out.println(resultSet.getString("Name") + ", "
-                            + resultSet.getString("Country") + ", "
-                            + resultSet.getString("District") + ", "
-                            + resultSet.getString("Population"));
-                }
-            } else {
-                UI ui = new UI(this);
-                //Get 'N'
-                /*
-                int resultCap = ui.GetUserIntInput(1, 10000);
-                int iterator = 0;
-
-                while (resultSet.next() && iterator < resultCap) {
-                    System.out.println(resultSet.getString("Name") + ", "
-                            + resultSet.getString("Country") + ", "
-                            + resultSet.getString("District") + ", "
-                            + resultSet.getString("Population"));
-                    iterator++;
-
-
-                }
-                */
-
-            }
+            System.out.println(resultSet.getString("Population"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to print cities");
