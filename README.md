@@ -10,7 +10,7 @@
 8. Open terminal
 9. Input: docker exec -it <container_id_or_name> /bin/sh
 10. Press enter
-11. Input: java -jar /tmp/seMethods-0.1-alpha-4-jar-with-dependencies.jar
+11. Input: java -jar /tmp/seMethods-0.1-alpha-5-jar-with-dependencies.jar
 12. Press enter
 13. You can now use the menu on the terminal!!
 
