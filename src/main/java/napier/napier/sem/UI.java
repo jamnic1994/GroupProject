@@ -25,7 +25,7 @@ public class UI {
         int inputNum = 0;
 
         String ciEnv = System.getenv("CI");
-        boolean isCICD = ciEnv != null && ciEnv.equals("true");
+        boolean isCICD = ciEnv != null && ciEnv.equals("True");
         System.out.println("CI Environment Variable: " + ciEnv);  // Debugging output
         System.out.println("Is CI/CD: " + isCICD);  // Debugging output
 
