@@ -6,7 +6,7 @@ jobs:
     name: World Database Application
     runs-on: ubuntu-20.04
     env:
-      CI: True  # Set the CI environment variable globally for the job
+      CI: true  # Set the CI environment variable globally for the job
 
     steps:
       - name: Checkout
@@ -23,7 +23,7 @@ jobs:
       - name: Print environment variables
         run: |
           echo "CI environment variable is: $CI"
-          env  # This will print all environment variables
+          env  # Printa all environment variables for debugging
 
       - name: Unit Tests
         run: mvn -Dtest=napier.com.sem.AppTest test

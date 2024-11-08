@@ -4,6 +4,8 @@ services:
     build: .
     stdin_open: true  # Keep STDIN open for the container
     tty: true         # Allocate a pseudo-TTY
+    env_file:
+      - .env
 
   db:
     build: db/.
