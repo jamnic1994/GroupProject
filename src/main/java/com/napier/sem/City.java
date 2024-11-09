@@ -1,4 +1,4 @@
-package napier.napier.sem;
+package com.napier.sem;
 
 /**
  * Class to represent a city

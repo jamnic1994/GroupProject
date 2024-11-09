@@ -94,7 +94,7 @@ public class UI {
         scanner.close();
     }
 
-    //Terminal UI for city questions
+    //Terminal UI for population questions
     public void TotalPopulations() {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
@@ -122,7 +122,7 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Population of the world:\n_______\n");
-
+                    app.Population_World();
                     inputNum = -1;
                     break;
                 case 2:

@@ -3,22 +3,22 @@
  * IN THE APP FILE WE HAVE MADE A CONNECTION TO THE DATABASE AND CHECKS THAT IT CONNECTS OR NOT
  * THE SCRIPT WILL RUN AN SQL STATEMENT AND GIVE RESULTS
  **/
-package napier.napier.sem;
+package com.napier.sem;
 
 import java.sql.*;
 
 public class App {
 
     public static void main(String[] args) {
-        // Create class objects
+        // Create a single App instance and connect it to the database
         App a = new App();
-        UI ui = new UI(a);
-
-        // Connect to database
         a.connect();
 
+        // Pass the connected App instance to UI
+        com.napier.sem.UI ui = new com.napier.sem.UI(a);
+
         // Run the console menu
-        ui.startUI();
+        ui.UI();
 
         // Disconnect from database
         a.disconnect();
@@ -160,24 +160,52 @@ public class App {
         }
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
     //Prints population of the world
     public void Population_World() {
         try {
 
             //SQL statement as a string
             String select =
-                    "SELECT SUM(population) AS Population " +
-                            "FROM country";
+                    "SELECT SUM(c.Population) AS TotalPopulation " +
+                            "FROM country c";
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
 
             //Print SQL results
-            System.out.println(resultSet.getString("Population"));
+            while (resultSet.next()) {
+                System.out.println(resultSet.getLong("TotalPopulation"));
+            }
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to print cities");
+            System.out.println("Failed to print population");
+        }
+    }
+
+    //Prints population of a continent
+    public void Population_Continent() {
+        try {
+
+            //SQL statement as a string
+            String select =
+                    "SELECT SUM(c.Population) AS TotalPopulation " +
+                            "FROM country c";
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getLong("TotalPopulation"));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print population");
         }
     }
 
