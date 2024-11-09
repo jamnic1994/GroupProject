@@ -142,10 +142,12 @@ public class UI {
                     break;
                 case 5:
                     System.out.println("Population of a district:\n_______\n");
+                    app.Population_District();
                     inputNum = -1;
                     break;
                 case 6:
                     System.out.println("Population of a city:\n_______\n");
+                    app.Population_City();
                     inputNum = -1;
                     break;
                 case -1:

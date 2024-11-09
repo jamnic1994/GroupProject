@@ -276,4 +276,64 @@ public class App {
         }
     }
 
+    //Prints population of a district
+    public void Population_District() {
+        try {
+            System.out.println("Type district:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String districtInput = scanner.nextLine();
+
+            //SQL statement as a string
+            String select =
+                    "SELECT SUM(Population) AS DistrictPopulation " +
+                            "FROM city c " +
+                            "WHERE c.district = " + '"' + districtInput + '"';
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getLong("DistrictPopulation"));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print district population");
+        }
+    }
+
+    //Prints population of a city
+    public void Population_City() {
+        try {
+            System.out.println("Type city:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String cityInput = scanner.nextLine();
+
+            //SQL statement as a string
+            String select =
+                    "SELECT SUM(Population) AS CityPopulation " +
+                            "FROM city c " +
+                            "WHERE c.name = " + '"' + cityInput + '"';
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getLong("CityPopulation"));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print city population");
+        }
+    }
+
 }
