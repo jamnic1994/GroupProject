@@ -6,6 +6,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class App {
 
@@ -181,18 +182,24 @@ public class App {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to print population");
+            System.out.println("Failed to print world population");
         }
     }
 
     //Prints population of a continent
     public void Population_Continent() {
         try {
+            System.out.println("Type continent:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String continentInput = scanner.nextLine();
 
             //SQL statement as a string
             String select =
-                    "SELECT SUM(c.Population) AS TotalPopulation " +
-                            "FROM country c";
+                    "SELECT SUM(c.Population) AS ContinentPopulation " +
+                            "FROM country c " +
+                            "WHERE c.Continent = " + '"' + continentInput + '"';
 
             //Create & execute SQL statement
             Statement statement = con.createStatement();
@@ -200,12 +207,72 @@ public class App {
 
             //Print SQL results
             while (resultSet.next()) {
-                System.out.println(resultSet.getLong("TotalPopulation"));
+                System.out.println(resultSet.getLong("ContinentPopulation"));
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to print population");
+            System.out.println("Failed to print continent population");
+        }
+    }
+
+    //Prints population of a country
+    public void Population_Country() {
+        try {
+            System.out.println("Type country:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String countryInput = scanner.nextLine();
+
+            //SQL statement as a string
+            String select =
+                    "SELECT Population AS CountryPopulation " +
+                            "FROM country c " +
+                            "WHERE c.name = " + '"' + countryInput + '"';
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getLong("CountryPopulation"));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print country population");
+        }
+    }
+
+    //Prints population of a region
+    public void Population_Region() {
+        try {
+            System.out.println("Type region:");
+
+            //Create scanner and process chosen continent as a string input
+            Scanner scanner = new Scanner(System.in);
+            String regionInput = scanner.nextLine();
+
+            //SQL statement as a string
+            String select =
+                    "SELECT SUM(Population) AS RegionPopulation " +
+                            "FROM country c " +
+                            "WHERE c.region = " + '"' + regionInput + '"';
+
+            //Create & execute SQL statement
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(select);
+
+            //Print SQL results
+            while (resultSet.next()) {
+                System.out.println(resultSet.getLong("RegionPopulation"));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to print region population");
         }
     }
 

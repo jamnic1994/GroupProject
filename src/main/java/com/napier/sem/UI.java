@@ -104,11 +104,11 @@ public class UI {
             System.out.print(" \n______________________________\n");
             System.out.println(
                     "(1) Population of the world \n" +
-                            "(2) Population of a region \n" +
-                            "(3) Population of a continent \n" +
-                            "(4) Population of a country \n" +
-                            "(4) Population of a city \n" +
-                            "(4) Population of a district \n" +
+                            "(2) Population of a continent \n" +
+                            "(3) Population of a country \n" +
+                            "(4) Population of a region \n" +
+                            "(5) Population of a district \n" +
+                            "(6) Population of a city \n" +
                             "(-1) Exit");
 
             System.out.print("Your choice: ");
@@ -127,18 +127,25 @@ public class UI {
                     break;
                 case 2:
                     System.out.println("Population of a continent:\n_______\n");
+                    app.Population_Continent();
                     inputNum = -1;
                     break;
                 case 3:
                     System.out.println("Population of a country:\n_______\n");
+                    app.Population_Country();
                     inputNum = -1;
                     break;
                 case 4:
-                    System.out.println("Population of a city:\n_______\n");
+                    System.out.println("Population of a region:\n_______\n");
+                    app.Population_Region();
                     inputNum = -1;
                     break;
                 case 5:
                     System.out.println("Population of a district:\n_______\n");
+                    inputNum = -1;
+                    break;
+                case 6:
+                    System.out.println("Population of a city:\n_______\n");
                     inputNum = -1;
                     break;
                 case -1:
