@@ -48,6 +48,7 @@ jobs:
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
           slug: jamnic1994/GroupProject
+          run: npx jest --coverage
 
   build:
     name: Build and Start Using Docker Compose
