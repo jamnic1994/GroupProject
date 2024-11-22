@@ -2,8 +2,25 @@ name: A workflow for Group 36s App
 on: push
 
 jobs:
+
+  UnitTests:
+    name: Unit Tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up JDK 14
+        uses: actions/setup-java@v2
+        with:
+          java-version: '14'
+          distribution: 'adopt'
+      - name: Unit Tests
+        run: mvn -Dtest=napier.com.sem.AppTest test
+
   build:
-    name: World Database Application
+    name: Build and Start Using Docker Compose
     runs-on: ubuntu-20.04
     env:
       CI: true  # Set the CI environment variable globally for the job
@@ -13,21 +30,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-
       - name: Set up JDK 14
         uses: actions/setup-java@v2
         with:
           java-version: '14'
           distribution: 'adopt'
-
-      - name: Print environment variables
-        run: |
-          echo "CI environment variable is: $CI"
-          env  # Printa all environment variables for debugging
-
-      - name: Unit Tests
-        run: mvn -Dtest=napier.com.sem.AppTest test
-
       - name: Package and Run docker compose
         run: |
           mvn package -DskipTests
