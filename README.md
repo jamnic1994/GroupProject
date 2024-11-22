@@ -3,16 +3,9 @@
 1. Stop + delete any running containers and images.
 2. Delete target directory
 3. Set CI in .env file to "false" (Otherwise it will run through all menu options automatically)
-4. Build project (ctrl + F9)
-5. Compile in Maven
-6. Package in Maven
-7. Run docker-compose.yml
-8. Open terminal
-9. Input: docker exec -it <container_id_or_name> /bin/sh
-10. Press enter
-11. Input: java -jar /tmp/seMethods-0.1-alpha-5-jar-with-dependencies.jar
-12. Press enter
-13. You can now use the menu on the terminal!!
+4. Run DB section of docker-compose
+5. Look for "ready for connections." in docker logs
+6. Click green run button next to main method
 
 # If pushing to github repo!!
 

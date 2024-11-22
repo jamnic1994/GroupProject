@@ -171,7 +171,7 @@ public class UI {
      * Returns int for "Top N questions"
      */
     public int GetUserIntInput(int min, int max) {
-        //Setup scanner for user input
+        // Setup scanner for user input
         Scanner scanner = new Scanner(System.in);
         System.out.print("Number of results to display: ");
 
@@ -192,7 +192,6 @@ public class UI {
                 System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
             }
         }
-
         return -1;
     }
 }
