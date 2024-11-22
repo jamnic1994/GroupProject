@@ -87,7 +87,7 @@ public class App {
     /**
      * Method to generate population report.
      */
-    public void reportpopulation() {
+    public void ReportPopulation() {
         try {
             Statement stmt = con.createStatement();
 
@@ -161,8 +161,9 @@ public class App {
         }
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Prints population of the world
+    /**
+     * Prints population of the world.
+     */
     public void Population_World() {
         try {
 
@@ -186,7 +187,9 @@ public class App {
         }
     }
 
-    //Prints population of a continent
+    /**
+     * Prints population of a continent
+     */
     public void Population_Continent() {
         try {
             System.out.println("Type continent:");
@@ -216,7 +219,9 @@ public class App {
         }
     }
 
-    //Prints population of a country
+    /**
+     * Prints population of a country
+     */
     public void Population_Country() {
         try {
             System.out.println("Type country:");
@@ -246,7 +251,9 @@ public class App {
         }
     }
 
-    //Prints population of a region
+    /**
+     * Prints population of a region
+     */
     public void Population_Region() {
         try {
             System.out.println("Type region:");
@@ -276,7 +283,9 @@ public class App {
         }
     }
 
-    //Prints population of a district
+    /**
+     * Prints population of a district
+     */
     public void Population_District() {
         try {
             System.out.println("Type district:");
@@ -306,7 +315,9 @@ public class App {
         }
     }
 
-    //Prints population of a city
+    /**
+     * Prints population of a city
+     */
     public void Population_City() {
         try {
             System.out.println("Type city:");

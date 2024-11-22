@@ -10,7 +10,9 @@ import java.util.Scanner;
 public class UI {
     private App app;
 
-    // Constructor that accepts an App instance with an active connection
+    /**
+     * Constructor that accepts an App instance with an active connection
+     */
     public UI(App app) {
         this.app = app;
     }
@@ -94,7 +96,9 @@ public class UI {
         scanner.close();
     }
 
-    //Terminal UI for population questions
+    /**
+     * Terminal UI for population questions
+     */
     public void TotalPopulations() {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
@@ -163,7 +167,9 @@ public class UI {
         scanner.close();
     }
 
-    //Returns int for "Top N questions"
+    /**
+     * Returns int for "Top N questions"
+     */
     public int GetUserIntInput(int min, int max) {
         //Setup scanner for user input
         Scanner scanner = new Scanner(System.in);
@@ -172,13 +178,13 @@ public class UI {
         int inputNum = 0;
         while (inputNum != -1) {
             try {
-                //Ensure intput is int and within range
+                // Ensure input is int and within range
                 inputNum = Integer.parseInt(scanner.nextLine());
                 if (inputNum <= min || inputNum >= max) {
                     System.out.println("Invalid input. Please enter a valid integer within the range " + min + " - " + max + ".");
                     inputNum = 0;
                 } else {
-                    //Close scanner and return int if int is valid
+                    // Close scanner and return int if int is valid
                     scanner.close();
                     return inputNum;
                 }
