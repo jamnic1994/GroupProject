@@ -410,6 +410,57 @@ public class App {
     }
 
     /**
+     * Method to return the details for a city object.
+     */
+    public Country getCountry(int indepYear)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM country "
+                            + "WHERE IndepYear  = " + indepYear;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Check if a result is returned
+            if (rset.next())
+            {
+                Country country = new Country();
+                country.Code = rset.getString("Code");
+                country.name = rset.getString("Name");
+                country.continent = rset.getString("Continent");
+                country.region = rset.getString("Region");
+                country.surfaceArea = rset.getFloat("SurfaceArea");
+                country.indepYear = rset.getInt("IndepYear");
+                country.population = rset.getInt("Population");
+                country.lifeExpectancy = rset.getFloat("LifeExpectancy");
+                country.gnp = rset.getFloat("GNP");
+                country.gnpOld = rset.getFloat("GNPOld");
+                country.localName = rset.getString("LocalName");
+                country.governmentForm = rset.getString("GovernmentForm");
+                country.headOfState = rset.getString("HeadOfState");
+                country.capital = rset.getInt("Capital");
+                country.code2 = rset.getString("Code2");
+                return country;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+    }
+
+    /**
      * Method to display the details from a city.
      *
      * @return
