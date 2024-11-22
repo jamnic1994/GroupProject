@@ -47,6 +47,10 @@ public class App {
         return con;
     }
 
+    public void setCon(Connection con) {
+        this.con = con;
+    }
+
     /**
      * Connect to the MySQL database.
      */
@@ -364,4 +368,65 @@ public class App {
         }
     }
 
+    /**
+     * Method to return the details for a city object.
+     */
+    public City getCity(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT * FROM city "
+                            + "WHERE id  = " + ID;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Check if a result is returned
+            if (rset.next())
+            {
+                City city = new City();
+                city.city_id = rset.getInt("ID");
+                city.name = rset.getString("Name");
+                city.countryCode = rset.getString("CountryCode");
+                city.district = rset.getString("District");
+                city.population = rset.getInt("Population");
+                return city;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details");
+            return null;
+        }
+    }
+
+    /**
+     * Method to display the details from a city.
+     *
+     * @return
+     */
+    public String displayCity(City city)
+    {
+        if (city != null) {
+            return "City ID: " + city.city_id + "\n"
+                    + "City Name: " + city.name + "\n"
+                    + "City Country Code: " + city.countryCode + "\n"
+                    + "City District: " + city.district + "\n"
+                    + "City Population: " + city.population + "\n";
+        }
+        else if (city == null){
+
+            return "No city found.";
+
+        } return null;
+    }
 }
