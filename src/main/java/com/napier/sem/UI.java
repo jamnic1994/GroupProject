@@ -18,10 +18,17 @@ public class UI {
     }
 
     public void UI() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
         int inputNum = 0;
 
+        String ciEnv = System.getenv("CI");
+        boolean isCICD = ciEnv != null && ciEnv.equals("True");
+        System.out.println("CI Environment Variable: " + ciEnv);  // Debugging output
+        System.out.println("Is CI/CD: " + isCICD);  // Debugging output
+
+        // Main loop for user interaction
         while (inputNum != -1) {
+            // Print the menu in both interactive and CI/CD mode
             System.out.print("\n _____________________________________________________________\n");
             System.out.println("Enter question number to receive answer: \n" +
                     "(1) Countries from largest to smallest \n" +
@@ -35,17 +42,24 @@ public class UI {
                     "(9) Language speakers from greatest to smallest \n" +
                     "(-1) Exit");
 
-            System.out.print("Your choice: ");
-            try {
-                inputNum = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid integer.");
-                continue;
+            // Handle input based on environment mode
+            if (!isCICD) {
+                System.out.print("Your choice: ");  // Prompt for input
+                try {
+                    inputNum = Integer.parseInt(scanner.nextLine());  // Read input and parse it
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                    continue;  // Skip to the next iteration if input is invalid
+                }
+            } else {
+                // Completed report methods should be added here for testing.
+                inputNum = -1;  // End the loop after automated tests
             }
 
+            // Validate the input range if not in CI/CD mode
             if (inputNum < -1 || inputNum > 9) {
                 System.out.println("Invalid input. Please enter a number between -1 and 9.");
-                continue;
+                continue;  // Skip to the next iteration for invalid inputs
             }
 
             switch (inputNum) {
