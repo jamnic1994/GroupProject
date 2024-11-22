@@ -45,7 +45,7 @@ jobs:
     name: Build and Start Using Docker Compose
     runs-on: ubuntu-20.04
     env:
-      CI: true  # Set the CI environment variable globally for the job
+      CI: True  # Set the CI environment variable globally for the job
 
     steps:
       - name: Checkout
