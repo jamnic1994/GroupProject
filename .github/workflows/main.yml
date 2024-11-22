@@ -39,7 +39,15 @@ jobs:
           mvn -Dtest=napier.com.sem.AppIntegrationTest test
           docker stop world
           docker rm world
-          docker image rm database    
+          docker image rm database
+      - name: CodeCov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # now required for public repos too
+          directory: ./target/site/jacoco
+          flags: Integration Tests # optional
+          verbose: true # optional (default = false)
+          slug: jamnic1994/GroupProject
 
   build:
     name: Build and Start Using Docker Compose
@@ -61,3 +69,4 @@ jobs:
         run: |
           mvn package -DskipTests
           docker compose up --abort-on-container-exit
+          
