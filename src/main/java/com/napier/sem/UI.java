@@ -9,16 +9,21 @@ import java.util.Scanner;
 
 public class UI {
     private App app;
+    private Scanner scanner; // Define scanner at the class level
 
     /**
      * Constructor that accepts an App instance with an active connection
      */
     public UI(App app) {
         this.app = app;
+        this.scanner = new Scanner(System.in); // Initialize scanner
     }
 
-    public void UI() {
-        Scanner scanner = new Scanner(System.in);  // Create a Scanner object for user input
+    /**
+     * Main menu UI for the program
+     */
+    public void mainUI() {
+
         int inputNum = 0;
 
         String ciEnv = System.getenv("CI");
@@ -30,16 +35,13 @@ public class UI {
         while (inputNum != -1) {
             // Print the menu in both interactive and CI/CD mode
             System.out.print("\n _____________________________________________________________\n");
-            System.out.println("Enter question number to receive answer: \n" +
-                    "(1) Countries from largest to smallest \n" +
-                    "(2) Top N populated countries \n" +
-                    "(3) Cities from largest to smallest \n" +
-                    "(4) Top N populated cities \n" +
-                    "(5) Capital cities from largest to smallest \n" +
-                    "(6) Top N populated capital cities \n" +
-                    "(7) Population of people living in/out of cities \n" +
-                    "(8) Total populations \n" +
-                    "(9) Language speakers from greatest to smallest \n" +
+            System.out.println("What type of report would you like to see: \n" +
+                    "(1) Country Reports \n" +
+                    "(2) City Reports \n" +
+                    "(3) Capital City Reports \n" +
+                    "(4) Population Reports \n" +
+                    "(5) Total Population Reports \n" +
+                    "(6) Language Reports \n" +
                     "(-1) Exit");
 
             // Handle input based on environment mode
@@ -57,63 +59,347 @@ public class UI {
             }
 
             // Validate the input range if not in CI/CD mode
-            if (inputNum < -1 || inputNum > 9) {
-                System.out.println("Invalid input. Please enter a number between -1 and 9.");
+            if (inputNum < -1 || inputNum > 6) {
+                System.out.println("Invalid input. Please enter a number between -1 and 6.");
                 continue;  // Skip to the next iteration for invalid inputs
             }
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Countries from largest to smallest:");
-                    // Countries_LargestToSmallest();
+                    System.out.println("Country Reports:");
+                    CountryReportMenu();
                     break;
                 case 2:
-                    System.out.println("Selected: Countries_TopPopulated");
-                    // Add the actual logic for Top N populated countries
+                    System.out.println("City Reports:");
+                    CityReportsMenu();
                     break;
                 case 3:
-                    System.out.println("Cities from largest to smallest:");
-
+                    System.out.println("Capital City Reports:");
+                    CapitalCityReportsMenu();
                     break;
                 case 4:
-                    System.out.println("Top N populated cities:");
-
+                    System.out.println("Population Reports:");
+                    PopulationReportsMenu();
                     break;
                 case 5:
-                    System.out.println("Selected: CapCities_LargestToSmallest");
-                    // Add the actual logic for Capital cities from largest to smallest
+                    System.out.println("Total Population Reports:");
+                    TotalPopulationMenu();
                     break;
                 case 6:
-                    System.out.println("Selected: CapCities_TopPopulated");
-                    // Add the actual logic for Top N populated capital cities
-                    break;
-                case 7:
-                    System.out.println("Selected: Population_InAndOutOfCities");
-                    // Add the actual logic for Population in and out of cities
-                    break;
-                case 8:
-                    System.out.println("Total populations: ");
-                    TotalPopulations();
-                    break;
-                case 9:
-                    System.out.println("Selected: Languages_GreatestToSmallest");
-                    // Add the actual logic for Language speakers from greatest to smallest
+                    System.out.println("Language Reports:");
+                    LanguageReportsMenu();
                     break;
                 case -1:
                     System.out.println("Exiting...");
+                    scanner.close();
                     System.exit(0);
                     break;
                 default:
                     System.out.println("Feature not yet implemented.");
             }
         }
-        scanner.close();
     }
 
     /**
-     * Terminal UI for population questions
+     * Terminal UI for country reports
      */
-    public void TotalPopulations() {
+    public void CountryReportMenu(){
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        // Main loop for user interaction
+        while (inputNum != -1) {
+            // Print the menu in both interactive and CI/CD mode
+            System.out.print("\n _____________________________________________________________\n");
+            System.out.println("Country Reports Menu: \n" +
+                    "(1) All countries in the world (largest to smallest population) \n" +
+                    "(2) All countries in a continent (largest to smallest population) \n" +
+                    "(3) All countries in a region (largest to smallest population) \n" +
+                    "(4) Top N populated countries in the world \n" +
+                    "(5) Top N populated countries in a continent \n" +
+                    "(6) Top N populated countries in a region \n" +
+                    "(-1) Back to Main Menu");
+                    System.out.print("Your choice: ");
+
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Fetching all countries in the world (largest to smallest population):");
+                    // app.getAllCountriesByPopulation(); // Call the appropriate method
+                    break;
+                case 2:
+                    System.out.println("Fetching all countries in a continent (largest to smallest population):");
+                    System.out.print("Enter the continent name: ");
+                    String continent = scanner.nextLine();
+                     // app.getCountriesInContinentByPopulation(continent); // Call the appropriate method
+                    break;
+                case 3:
+                    System.out.println("Fetching all countries in a region (largest to smallest population):");
+                    System.out.print("Enter the region name: ");
+                    String region = scanner.nextLine();
+                    // app.getCountriesInRegionByPopulation(region); // Call the appropriate method
+                    break;
+                case 4:
+                    System.out.println("Fetching top N populated countries in the world:");
+                    int topNWorld = getTopNFromUser(scanner);
+                    // app.getTopNCountriesByPopulationWorldwide(topNWorld); // Call the appropriate method
+                    break;
+                case 5:
+                    System.out.println("Fetching top N populated countries in a continent:");
+                    System.out.print("Enter the continent name: ");
+                    String topNContinent = scanner.nextLine();
+                    int topNForContinent = getTopNFromUser(scanner);
+                    // app.getTopNCountriesByPopulationInContinent(topNContinent, topNForContinent); // Call the appropriate method
+                    break;
+                case 6:
+                    System.out.println("Fetching top N populated countries in a region:");
+                    System.out.print("Enter the region name: ");
+                    String topNRegion = scanner.nextLine();
+                    int topNForRegion = getTopNFromUser(scanner);
+                    // app.getTopNCountriesByPopulationInRegion(topNRegion, topNForRegion); // Call the appropriate method
+                    break;
+                case -1:
+                    System.out.println("Returning to Main Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please select an option between 1 and 6, or -1 to return to the Main Menu.");
+            }
+        }
+    }
+
+    /**
+     * Terminal UI for city reports
+     */
+    public void CityReportsMenu(){
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        while (inputNum != -1) {
+            System.out.print("\n _____________________________________________________________\n");
+            System.out.println("City Reports Menu:: \n" +
+                    "(1) All cities in the world (largest to smallest population) \n" +
+                    "(2) All cities in a continent (largest to smallest population) \n" +
+                    "(3) All cities in a region (largest to smallest population) \n" +
+                    "(4) All cities in a country (largest to smallest population) \n" +
+                    "(5) All cities in a district (largest to smallest population) \n" +
+                    "(6) Top N populated cities in the world \n" +
+                    "(7) Top N populated cities in a continent \n" +
+                    "(8) Top N populated cities in a region \n" +
+                    "(9) Top N populated cities in a country \n" +
+                    "(10) Top N populated cities in a district \n" +
+                    "(-1) Back to Main Menu");
+            System.out.print("Your choice: ");
+
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Fetching all cities in the world (largest to smallest population):");
+                    // app.getAllCitiesByPopulationWorldwide(); // Call the appropriate method
+                    break;
+                case 2:
+                    System.out.println("Fetching all cities in a continent (largest to smallest population):");
+                    System.out.print("Enter the continent name: ");
+                    String continent = scanner.nextLine();
+                    // app.getCitiesInContinentByPopulation(continent); // Call the appropriate method
+                    break;
+                case 3:
+                    System.out.println("Fetching all cities in a region (largest to smallest population):");
+                    System.out.print("Enter the region name: ");
+                    String region = scanner.nextLine();
+                    // app.getCitiesInRegionByPopulation(region); // Call the appropriate method
+                    break;
+                case 4:
+                    System.out.println("Fetching all cities in a country (largest to smallest population):");
+                    System.out.print("Enter the country name: ");
+                    String country = scanner.nextLine();
+                    // app.getCitiesInCountryByPopulation(country); // Call the appropriate method
+                    break;
+                case 5:
+                    System.out.println("Fetching all cities in a district (largest to smallest population):");
+                    System.out.print("Enter the district name: ");
+                    String district = scanner.nextLine();
+                    // app.getCitiesInDistrictByPopulation(district); // Call the appropriate method
+                    break;
+                case 6:
+                    System.out.println("Fetching top N populated cities in the world:");
+                    int topNWorld = getTopNFromUser(scanner);
+                    // app.getTopNCitiesByPopulationWorldwide(topNWorld); // Call the appropriate method
+                    break;
+                case 7:
+                    System.out.println("Fetching top N populated cities in a continent:");
+                    System.out.print("Enter the continent name: ");
+                    String topNContinent = scanner.nextLine();
+                    int topNForContinent = getTopNFromUser(scanner);
+                    // app.getTopNCitiesByPopulationInContinent(topNContinent, topNForContinent); // Call the appropriate method
+                    break;
+                case 8:
+                    System.out.println("Fetching top N populated cities in a region:");
+                    System.out.print("Enter the region name: ");
+                    String topNRegion = scanner.nextLine();
+                    int topNForRegion = getTopNFromUser(scanner);
+                    // app.getTopNCitiesByPopulationInRegion(topNRegion, topNForRegion); // Call the appropriate method
+                    break;
+                case 9:
+                    System.out.println("Fetching top N populated cities in a country:");
+                    System.out.print("Enter the country name: ");
+                    String topNCountry = scanner.nextLine();
+                    int topNForCountry = getTopNFromUser(scanner);
+                    // app.getTopNCitiesByPopulationInCountry(topNCountry, topNForCountry); // Call the appropriate method
+                    break;
+                case 10:
+                    System.out.println("Fetching top N populated cities in a district:");
+                    System.out.print("Enter the district name: ");
+                    String topNDistrict = scanner.nextLine();
+                    int topNForDistrict = getTopNFromUser(scanner);
+                    // app.getTopNCitiesByPopulationInDistrict(topNDistrict, topNForDistrict); // Call the appropriate method
+                    break;
+                case -1:
+                    System.out.println("Returning to Main Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please select an option between 1 and 10, or -1 to return to the Main Menu.");
+            }
+        }
+    }
+
+    /**
+     * Terminal UI for capital city reports
+     */
+    public void CapitalCityReportsMenu() {
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        while (inputNum != -1) {
+            System.out.print("\n _____________________________________________________________\n");
+            System.out.println("Capital City Reports Menu:: \n" +
+                    "(1) All capital cities in the world (largest population to smallest) \n" +
+                    "(2) All capital cities in a continent (largest population to smallest) \n" +
+                    "(3) All capital cities in a region (largest population to smallest) \n" +
+                    "(4) The top N populated capital cities in the world \n" +
+                    "(5) The top N populated capital cities in a continent \n" +
+                    "(6) The top N populated capital cities in a region \n" +
+                    "(-1) Back to Main Menu");
+            System.out.print("Your choice: ");
+
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Fetching all capital cities in the world organized by largest population to smallest:");
+                    // app.getAllCapitalCitiesWorldwideByPopulation(); // Call the appropriate method
+                    break;
+                case 2:
+                    System.out.println("Fetching all capital cities in a continent organized by largest population to smallest:");
+                    System.out.print("Enter the continent name: ");
+                    String continent = scanner.nextLine();
+                    // app.getCapitalCitiesInContinentByPopulation(continent); // Call the appropriate method
+                    break;
+                case 3:
+                    System.out.println("Fetching all capital cities in a region organized by largest population to smallest:");
+                    System.out.print("Enter the region name: ");
+                    String region = scanner.nextLine();
+                    // app.getCapitalCitiesInRegionByPopulation(region); // Call the appropriate method
+                    break;
+                case 4:
+                    System.out.println("Fetching the top N populated capital cities in the world:");
+                    int topNWorld = getTopNFromUser(scanner);
+                    // app.getTopNCapitalCitiesWorldwide(topNWorld); // Call the appropriate method
+                    break;
+                case 5:
+                    System.out.println("Fetching the top N populated capital cities in a continent:");
+                    System.out.print("Enter the continent name: ");
+                    String topNContinent = scanner.nextLine();
+                    int topNForContinent = getTopNFromUser(scanner);
+                    // app.getTopNCapitalCitiesInContinent(topNContinent, topNForContinent); // Call the appropriate method
+                    break;
+                case 6:
+                    System.out.println("Fetching the top N populated capital cities in a region:");
+                    System.out.print("Enter the region name: ");
+                    String topNRegion = scanner.nextLine();
+                    int topNForRegion = getTopNFromUser(scanner);
+                    // app.getTopNCapitalCitiesInRegion(topNRegion, topNForRegion); // Call the appropriate method
+                    break;
+                case -1:
+                    System.out.println("Returning to Main Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please select an option between 1 and 6, or -1 to return to the Main Menu.");
+            }
+        }
+    }
+
+    /**
+     * Terminal UI for population reports
+     */
+    public void PopulationReportsMenu() {
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        while (inputNum != -1) {
+            System.out.print("\n _____________________________________________________________\n");
+            System.out.println("Population Reports Menu:: \n" +
+                    "(1) Population of people living in/out of cities in a continent \n" +
+                    "(2) Population of people living in/out of cities in a region \n" +
+                    "(3) Population of people living in/out of cities in a country \n" +
+                    "(-1) Back to Main Menu");
+            System.out.print("Your choice: ");
+
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Fetching population of people living in/out of cities in a continent:");
+                    System.out.print("Enter the continent name: ");
+                    String continent = scanner.nextLine();
+                    // app.getPopulationInOutCitiesByContinent(continent); // Call the appropriate method
+                    break;
+                case 2:
+                    System.out.println("Fetching population of people living in/out of cities in a region:");
+                    System.out.print("Enter the region name: ");
+                    String region = scanner.nextLine();
+                    // app.getPopulationInOutCitiesByRegion(region); // Call the appropriate method
+                    break;
+                case 3:
+                    System.out.println("Fetching population of people living in/out of cities in a country:");
+                    System.out.print("Enter the country name: ");
+                    String country = scanner.nextLine();
+                    // app.getPopulationInOutCitiesByCountry(country); // Call the appropriate method
+                    break;
+                case -1:
+                    System.out.println("Returning to Main Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please select an option between 1 and 3, or -1 to return to the Main Menu.");
+            }
+        }
+    }
+
+    /**
+     * Terminal UI for total population reports
+     */
+    public void TotalPopulationMenu() {
         Scanner scanner = new Scanner(System.in);
         int inputNum = 0;
 
@@ -141,32 +427,26 @@ public class UI {
                 case 1:
                     System.out.println("Population of the world:\n_______\n");
                     app.Population_World();
-                    inputNum = -1;
                     break;
                 case 2:
                     System.out.println("Population of a continent:\n_______\n");
                     app.Population_Continent();
-                    inputNum = -1;
                     break;
                 case 3:
                     System.out.println("Population of a country:\n_______\n");
                     app.Population_Country();
-                    inputNum = -1;
                     break;
                 case 4:
                     System.out.println("Population of a region:\n_______\n");
                     app.Population_Region();
-                    inputNum = -1;
                     break;
                 case 5:
                     System.out.println("Population of a district:\n_______\n");
                     app.Population_District();
-                    inputNum = -1;
                     break;
                 case 6:
                     System.out.println("Population of a city:\n_______\n");
                     app.Population_City();
-                    inputNum = -1;
                     break;
                 case -1:
                     System.out.println("Exiting...");
@@ -178,7 +458,80 @@ public class UI {
             }
 
         }
-        scanner.close();
+    }
+
+    /**
+     * Displays the submenu for Language Reports and handles user selection.
+     */
+    public void LanguageReportsMenu() {
+        Scanner scanner = new Scanner(System.in);
+        int inputNum = 0;
+
+        while (inputNum != -1) {
+            System.out.print("\n _____________________________________________________________\n");
+            System.out.println("Language Reports Menu:: \n" +
+                    "(1) Number of Chinese speakers (including percentage of world population) \n" +
+                    "(2) Number of English speakers (including percentage of world population) \n" +
+                    "(3) Number of Hindi speakers (including percentage of world population) \n" +
+                    "(4) Number of Spanish speakers (including percentage of world population) \n" +
+                    "(5) Number of Arabic speakers (including percentage of world population) \n" +
+                    "(-1) Back to Main Menu");
+            System.out.print("Your choice: ");
+
+            try {
+                inputNum = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                continue;
+            }
+
+            switch (inputNum) {
+                case 1:
+                    System.out.println("Fetching number of Chinese speakers:");
+                    // app.getLanguageSpeakers("Chinese"); // Call the method for Chinese speakers
+                    break;
+                case 2:
+                    System.out.println("Fetching number of English speakers:");
+                    // app.getLanguageSpeakers("English"); // Call the method for English speakers
+                    break;
+                case 3:
+                    System.out.println("Fetching number of Hindi speakers:");
+                    // app.getLanguageSpeakers("Hindi"); // Call the method for Hindi speakers
+                    break;
+                case 4:
+                    System.out.println("Fetching number of Spanish speakers:");
+                    // app.getLanguageSpeakers("Spanish"); // Call the method for Spanish speakers
+                    break;
+                case 5:
+                    System.out.println("Fetching number of Arabic speakers:");
+                    // app.getLanguageSpeakers("Arabic"); // Call the method for Arabic speakers
+                    break;
+                case -1:
+                    System.out.println("Returning to Main Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid input. Please select an option between 1 and 5, or -1 to return to the Main Menu.");
+            }
+        }
+    }
+
+    /**
+     * Prompts the user to input a valid number for "Top N" queries.
+     */
+    private int getTopNFromUser(Scanner scanner) {
+        int topN = 0;
+        while (topN <= 0) {
+            System.out.print("Enter the number of top results to fetch (N): ");
+            try {
+                topN = Integer.parseInt(scanner.nextLine());
+                if (topN <= 0) {
+                    System.out.println("Please enter a positive number greater than zero.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid positive integer.");
+            }
+        }
+        return topN;
     }
 
     /**

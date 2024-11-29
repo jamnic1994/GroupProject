@@ -27,7 +27,7 @@ public class App {
         com.napier.sem.UI ui = new com.napier.sem.UI(a);
 
         // Run the console menu
-        ui.UI();
+        ui.mainUI();
 
         // Disconnect from database
         a.disconnect();
