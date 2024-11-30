@@ -97,7 +97,7 @@ public class UI {
                     break;
                 case 9:
                     System.out.println("Selected: Languages_GreatestToSmallest");
-                    // Add the actual logic for Language speakers from greatest to smallest
+                    app.LangSpeakersGreatestToSmallest();
                     break;
                 case -1:
                     System.out.println("Exiting...");
@@ -140,32 +140,32 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Population of the world:\n_______\n");
-                    app.Population_World();
+
                     inputNum = -1;
                     break;
                 case 2:
                     System.out.println("Population of a continent:\n_______\n");
-                    app.Population_Continent();
+
                     inputNum = -1;
                     break;
                 case 3:
                     System.out.println("Population of a country:\n_______\n");
-                    app.Population_Country();
+
                     inputNum = -1;
                     break;
                 case 4:
                     System.out.println("Population of a region:\n_______\n");
-                    app.Population_Region();
+
                     inputNum = -1;
                     break;
                 case 5:
                     System.out.println("Population of a district:\n_______\n");
-                    app.Population_District();
+
                     inputNum = -1;
                     break;
                 case 6:
                     System.out.println("Population of a city:\n_______\n");
-                    app.Population_City();
+
                     inputNum = -1;
                     break;
                 case -1:
