@@ -108,7 +108,7 @@ public class App {
     /**
      * Method to generate population report.
      */
-    public void ReportPopulation() {
+    public void PopulationInOutCity_Country() {
         try {
             Statement stmt = con.createStatement();
 
@@ -125,7 +125,7 @@ public class App {
             ResultSet rset = stmt.executeQuery(strQuery);
 
             //display report
-            System.out.println("Country\t\tTotal Population\tUrban Population\tRural Population");
+            System.out.println("\n\nCountry\t\tTotal Population\tUrban Population\tRural Population\n");
 
             // results
             while (rset.next()) {
@@ -148,7 +148,7 @@ public class App {
     /**
      * Method to generate population report by region.
      */
-    public void RegionPopulationReport() {
+    public void PopulationInOutCity_Region() {
         try {
             Statement stmt = con.createStatement();
 
@@ -165,7 +165,7 @@ public class App {
             ResultSet rset = stmt.executeQuery(strQuery);
 
             // display report
-            System.out.println("Region\t\tTotal Population\tUrban Population\tRural Population");
+            System.out.println("\n\nRegion\t\tTotal Population\tUrban Population\tRural Population\n");
 
             //results
             while (rset.next()) {
@@ -179,6 +179,45 @@ public class App {
             }
         } catch (SQLException e) {
             System.out.println("Error generating regional population report: " + e.getMessage());
+        }
+    }
+
+    public void PopulationInOutCity_Continent() {
+        try {
+            Statement stmt = con.createStatement();
+
+            String strQuery = "SELECT " +
+                    "    c.Continent AS Continent, " +
+                    "    SUM(cty.Population) AS UrbanPopulation, " +
+                    "    SUM(c.Population) AS TotalPopulation, " +
+                    "    SUM(c.Population) - SUM(cty.Population) AS RuralPopulation " +
+                    "FROM " +
+                    "    country c " +
+                    "JOIN " +
+                    "    city cty  " +
+                    "    ON c.code = cty.countryCode " +
+                    "GROUP BY " +
+                    "    c.Continent " +
+                    "ORDER BY " +
+                    "    c.Continent;";
+
+            ResultSet rset = stmt.executeQuery(strQuery);
+
+            // display report
+            System.out.println("\n\nContinent\t\tTotal Population\tUrban Population\tRural Population\n");
+
+            //results
+            while (rset.next()) {
+                String region = rset.getString("Continent");
+                long totalPopulation = rset.getLong("TotalPopulation");
+                long urbanPopulation = rset.getLong("UrbanPopulation");
+                long ruralPopulation = rset.getLong("RuralPopulation");
+
+                // display the results for each region
+                System.out.printf("%-15s\t%-15d\t%-15d\t%-15d%n", region, totalPopulation, urbanPopulation, ruralPopulation);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error generating continent population report: " + e.getMessage());
         }
     }
 

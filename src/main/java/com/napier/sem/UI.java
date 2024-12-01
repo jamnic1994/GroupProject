@@ -89,7 +89,9 @@ public class UI {
                     break;
                 case 7:
                     System.out.println("Selected: Population_InAndOutOfCities");
-                    // Add the actual logic for Population in and out of cities
+                    app.PopulationInOutCity_Region();
+                    app.PopulationInOutCity_Continent();
+                    app.PopulationInOutCity_Country();
                     break;
                 case 8:
                     System.out.println("Total populations: ");
