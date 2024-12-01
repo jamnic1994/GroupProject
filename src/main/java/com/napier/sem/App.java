@@ -106,17 +106,16 @@ public class App {
     }
 
     public void LangSpeakersGreatestToSmallest() {
-        // Number of people who speak, Chinese, English, Hindi, Spanish and Arabic
-        // from greatest to smallest, including population percentage of the world
-
-        // Print percentage of people who speak language in the world.
+        System.out.println("No. of Speakers, World Percentage, Language");
         try {
             String select =
                     "SELECT ROUND(SUM(cl.percentage / 100 * c.population)) AS 'NumOfSpeakers', " +
                             "(SUM(cl.percentage / 100 * c.population) / (SELECT SUM(c.Population) FROM country c)) * 100 " +
-                            "AS Percentage, 'Chinese' AS 'Lang' " +
+                            "AS Percentage, cl.Language AS 'Lang' " +
                             "FROM countrylanguage cl JOIN country c ON cl.countrycode = c.code " +
-                            "WHERE cl.language = 'Chinese' ";
+                            "WHERE cl.language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') " +
+                            "GROUP BY cl.Language " +
+                            "ORDER BY ROUND(SUM(cl.percentage / 100 * c.population)) DESC";
 
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(select);
