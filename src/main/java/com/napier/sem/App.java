@@ -371,10 +371,8 @@ public class App {
     /**
      * Method to return the details for a city object.
      */
-    public City getCity(int ID)
-    {
-        try
-        {
+    public City getCity(int ID) {
+        try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
 
@@ -387,8 +385,7 @@ public class App {
             ResultSet rset = stmt.executeQuery(strSelect);
 
             // Check if a result is returned
-            if (rset.next())
-            {
+            if (rset.next()) {
                 City city = new City();
                 city.city_id = rset.getInt("ID");
                 city.name = rset.getString("Name");
@@ -396,13 +393,10 @@ public class App {
                 city.district = rset.getString("District");
                 city.population = rset.getInt("Population");
                 return city;
-            }
-            else{
+            } else {
                 return null;
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get details");
             return null;
@@ -412,10 +406,8 @@ public class App {
     /**
      * Method to return the details for a city object.
      */
-    public Country getCountry(int indepYear)
-    {
-        try
-        {
+    public Country getCountry(int indepYear) {
+        try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
 
@@ -428,8 +420,7 @@ public class App {
             ResultSet rset = stmt.executeQuery(strSelect);
 
             // Check if a result is returned
-            if (rset.next())
-            {
+            if (rset.next()) {
                 Country country = new Country();
                 country.Code = rset.getString("Code");
                 country.name = rset.getString("Name");
@@ -447,13 +438,10 @@ public class App {
                 country.capital = rset.getInt("Capital");
                 country.code2 = rset.getString("Code2");
                 return country;
-            }
-            else{
+            } else {
                 return null;
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get details");
             return null;
@@ -465,19 +453,122 @@ public class App {
      *
      * @return
      */
-    public String displayCity(City city)
-    {
+    public String displayCity(City city) {
         if (city != null) {
             return "City ID: " + city.city_id + "\n"
                     + "City Name: " + city.name + "\n"
                     + "City Country Code: " + city.countryCode + "\n"
                     + "City District: " + city.district + "\n"
                     + "City Population: " + city.population + "\n";
-        }
-        else if (city == null){
+        } else if (city == null) {
 
             return "No city found.";
 
-        } return null;
+        }
+        return null;
     }
+
+    public void getLanguageSpeakers(String language) {
+        try {
+            String select =
+                    "SELECT " +
+                        "SUM(countrylanguage.Percentage * country.Population / 100) AS NumSpeakers, " +
+                        "(SUM(countrylanguage.Percentage * country.Population / 100) / (SELECT SUM(Population) FROM country)) * 100 AS WorldPercentage " +
+                        "FROM countrylanguage " +
+                        "JOIN country ON country.Code = countrylanguage.CountryCode " +
+                        "WHERE countrylanguage.Language = ?";
+
+            PreparedStatement statement = con.prepareStatement(select);
+            statement.setString(1, language);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+
+                System.out.println("Number of " + language + " speakers: " + resultSet.getLong("NumSpeakers"));
+                System.out.println("Percentage of world population: " + resultSet.getDouble("WorldPercentage") + "%");
+            } else {
+                System.out.println("No data found for " + language + ".");
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching language data: " + e.getMessage());
+        }
+    }
+
+    public void getPopulationInOutCitiesByContinent(String continent) {
+        try {
+            String select =
+                    "SELECT " +
+                        "SUM(CASE WHEN city.Name IS NOT NULL THEN country.Population ELSE 0 END) AS PopulationInCities, " +
+                        "SUM(CASE WHEN city.Name IS NULL THEN country.Population ELSE 0 END) AS PopulationOutCities " +
+                        "FROM country " +
+                        "LEFT JOIN city ON country.Code = city.CountryCode " +
+                        "WHERE country.Continent = ?";
+
+            PreparedStatement statement = con.prepareStatement(select);
+            statement.setString(1, continent);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching population data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches the population living in and outside of cities for a specific region.
+     * @param region The name of the region.
+     */
+    public void getPopulationInOutCitiesByRegion(String region) {
+        try {
+            String select =
+                    "SELECT " +
+                        "SUM(CASE WHEN city.Name IS NOT NULL THEN country.Population ELSE 0 END) AS PopulationInCities, " +
+                        "SUM(CASE WHEN city.Name IS NULL THEN country.Population ELSE 0 END) AS PopulationOutCities " +
+                        "FROM country " +
+                        "LEFT JOIN city ON country.Code = city.CountryCode " +
+                        "WHERE country.Region = ?";
+
+            PreparedStatement statement = con.prepareStatement(select);
+            statement.setString(1, region);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching population data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches the population living in and outside of cities for a specific country.
+     * @param country The name of the country.
+     */
+    public void getPopulationInOutCitiesByCountry(String country) {
+        try {
+            String select =
+                    "SELECT " +
+                        "SUM(CASE WHEN city.Name IS NOT NULL THEN country.Population ELSE 0 END) AS PopulationInCities, " +
+                        "SUM(CASE WHEN city.Name IS NULL THEN country.Population ELSE 0 END) AS PopulationOutCities " +
+                        "FROM country " +
+                        "LEFT JOIN city ON country.Code = city.CountryCode " +
+                        "WHERE country.Name = ?";
+
+            PreparedStatement statement = con.prepareStatement(select);
+            statement.setString(1, country);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching population data: " + e.getMessage());
+        }
+    }
+
 }

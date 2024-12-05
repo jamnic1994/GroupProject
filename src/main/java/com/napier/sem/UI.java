@@ -370,25 +370,25 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Fetching population of people living in/out of cities in a continent:");
-                    System.out.print("Enter the continent name: ");
+                    System.out.println("\nFetching population of people living in/out of cities in a continent:");
+                    System.out.print("\nEnter the continent name: ");
                     String continent = scanner.nextLine();
-                    // app.getPopulationInOutCitiesByContinent(continent); // Call the appropriate method
+                    app.getPopulationInOutCitiesByContinent(continent); // Call the appropriate method
                     break;
                 case 2:
-                    System.out.println("Fetching population of people living in/out of cities in a region:");
-                    System.out.print("Enter the region name: ");
+                    System.out.println("\nFetching population of people living in/out of cities in a region:");
+                    System.out.print("\nEnter the region name: ");
                     String region = scanner.nextLine();
-                    // app.getPopulationInOutCitiesByRegion(region); // Call the appropriate method
+                    app.getPopulationInOutCitiesByRegion(region); // Call the appropriate method
                     break;
                 case 3:
-                    System.out.println("Fetching population of people living in/out of cities in a country:");
-                    System.out.print("Enter the country name: ");
+                    System.out.println("\nFetching population of people living in/out of cities in a country:");
+                    System.out.print("\nEnter the country name: ");
                     String country = scanner.nextLine();
-                    // app.getPopulationInOutCitiesByCountry(country); // Call the appropriate method
+                    app.getPopulationInOutCitiesByCountry(country); // Call the appropriate method
                     break;
                 case -1:
-                    System.out.println("Returning to Main Menu...");
+                    System.out.println("\nReturning to Main Menu...");
                     break;
                 default:
                     System.out.println("Invalid input. Please select an option between 1 and 3, or -1 to return to the Main Menu.");
@@ -425,31 +425,31 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Population of the world:\n_______\n");
+                    System.out.println("\nPopulation of the world:\n_______\n");
                     app.Population_World();
                     break;
                 case 2:
-                    System.out.println("Population of a continent:\n_______\n");
+                    System.out.println("\nPopulation of a continent:\n_______\n");
                     app.Population_Continent();
                     break;
                 case 3:
-                    System.out.println("Population of a country:\n_______\n");
+                    System.out.println("\nPopulation of a country:\n_______\n");
                     app.Population_Country();
                     break;
                 case 4:
-                    System.out.println("Population of a region:\n_______\n");
+                    System.out.println("\nPopulation of a region:\n_______\n");
                     app.Population_Region();
                     break;
                 case 5:
-                    System.out.println("Population of a district:\n_______\n");
+                    System.out.println("\nPopulation of a district:\n_______\n");
                     app.Population_District();
                     break;
                 case 6:
-                    System.out.println("Population of a city:\n_______\n");
+                    System.out.println("\nPopulation of a city:\n_______\n");
                     app.Population_City();
                     break;
                 case -1:
-                    System.out.println("Exiting...");
+                    System.out.println("\nExiting...");
                     break;
                 default:
                     System.out.println("Invalid input. Please enter a number between -1 and 4.");
@@ -487,27 +487,27 @@ public class UI {
 
             switch (inputNum) {
                 case 1:
-                    System.out.println("Fetching number of Chinese speakers:");
-                    // app.getLanguageSpeakers("Chinese"); // Call the method for Chinese speakers
+                    System.out.println("\nFetching number of Chinese speakers:");
+                    app.getLanguageSpeakers("Chinese"); // Call the method for Chinese speakers
                     break;
                 case 2:
-                    System.out.println("Fetching number of English speakers:");
-                    // app.getLanguageSpeakers("English"); // Call the method for English speakers
+                    System.out.println("\nFetching number of English speakers:");
+                    app.getLanguageSpeakers("English"); // Call the method for English speakers
                     break;
                 case 3:
-                    System.out.println("Fetching number of Hindi speakers:");
-                    // app.getLanguageSpeakers("Hindi"); // Call the method for Hindi speakers
+                    System.out.println("\nFetching number of Hindi speakers:");
+                    app.getLanguageSpeakers("Hindi"); // Call the method for Hindi speakers
                     break;
                 case 4:
-                    System.out.println("Fetching number of Spanish speakers:");
-                    // app.getLanguageSpeakers("Spanish"); // Call the method for Spanish speakers
+                    System.out.println("\nFetching number of Spanish speakers:");
+                    app.getLanguageSpeakers("Spanish"); // Call the method for Spanish speakers
                     break;
                 case 5:
-                    System.out.println("Fetching number of Arabic speakers:");
-                    // app.getLanguageSpeakers("Arabic"); // Call the method for Arabic speakers
+                    System.out.println("\nFetching number of Arabic speakers:");
+                    app.getLanguageSpeakers("Arabic"); // Call the method for Arabic speakers
                     break;
                 case -1:
-                    System.out.println("Returning to Main Menu...");
+                    System.out.println("\nReturning to Main Menu...");
                     break;
                 default:
                     System.out.println("Invalid input. Please select an option between 1 and 5, or -1 to return to the Main Menu.");
