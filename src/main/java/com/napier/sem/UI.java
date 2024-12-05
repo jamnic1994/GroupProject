@@ -303,38 +303,39 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Fetching all capital cities in the world organized by largest population to smallest:");
-                    // app.getAllCapitalCitiesWorldwideByPopulation(); // Call the appropriate method
+                    app.getAllCapitalCitiesWorldwideByPopulation(); // Call the appropriate method
                     break;
                 case 2:
                     System.out.println("Fetching all capital cities in a continent organized by largest population to smallest:");
                     System.out.print("Enter the continent name: ");
                     String continent = scanner.nextLine();
-                    // app.getCapitalCitiesInContinentByPopulation(continent); // Call the appropriate method
+                    app.getCapitalCitiesInContinentByPopulation(continent); // Call the appropriate method
                     break;
                 case 3:
                     System.out.println("Fetching all capital cities in a region organized by largest population to smallest:");
                     System.out.print("Enter the region name: ");
                     String region = scanner.nextLine();
-                    // app.getCapitalCitiesInRegionByPopulation(region); // Call the appropriate method
+                    app.getCapitalCitiesInRegionByPopulation(region); // Call the appropriate method
                     break;
                 case 4:
                     System.out.println("Fetching the top N populated capital cities in the world:");
                     int topNWorld = getTopNFromUser(scanner);
-                    // app.getTopNCapitalCitiesWorldwide(topNWorld); // Call the appropriate method
+
+                    app.getTopNCapitalCitiesWorldwide(topNWorld); // Call the appropriate method
                     break;
                 case 5:
                     System.out.println("Fetching the top N populated capital cities in a continent:");
                     System.out.print("Enter the continent name: ");
                     String topNContinent = scanner.nextLine();
                     int topNForContinent = getTopNFromUser(scanner);
-                    // app.getTopNCapitalCitiesInContinent(topNContinent, topNForContinent); // Call the appropriate method
+                    app.getTopNCapitalCitiesInContinent(topNContinent, topNForContinent); // Call the appropriate method
                     break;
                 case 6:
                     System.out.println("Fetching the top N populated capital cities in a region:");
                     System.out.print("Enter the region name: ");
                     String topNRegion = scanner.nextLine();
                     int topNForRegion = getTopNFromUser(scanner);
-                    // app.getTopNCapitalCitiesInRegion(topNRegion, topNForRegion); // Call the appropriate method
+                    app.getTopNCapitalCitiesInRegion(topNRegion, topNForRegion); // Call the appropriate method
                     break;
                 case -1:
                     System.out.println("Returning to Main Menu...");

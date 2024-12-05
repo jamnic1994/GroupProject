@@ -571,4 +571,187 @@ public class App {
         }
     }
 
+    /**
+     * Fetches and displays all capital cities in the world organized by largest population to smallest.
+     */
+    public void getAllCapitalCitiesWorldwideByPopulation() {
+        try {
+            String query =
+                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population " +
+                            "FROM city " +
+                            "JOIN country ON city.ID = country.Capital " +
+                            "ORDER BY city.Population DESC";
+
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            System.out.printf("%-30s %-30s %-15s%n", "Capital City", "Country", "Population");
+            while (resultSet.next()) {
+                System.out.printf("%-30s %-30s %-15d%n",
+                        resultSet.getString("CapitalName"),
+                        resultSet.getString("CountryName"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching capital cities worldwide: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches and displays all capital cities in a continent organized by largest population to smallest.
+     * @param continent The name of the continent.
+     */
+    public void getCapitalCitiesInContinentByPopulation(String continent) {
+        try {
+            String query =
+                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population " +
+                            "FROM city " +
+                            "JOIN country ON city.ID = country.Capital " +
+                            "WHERE country.Continent = ? " +
+                            "ORDER BY city.Population DESC";
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, continent);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.printf("%-30s %-30s %-15s%n", "Capital City", "Country", "Population");
+            while (resultSet.next()) {
+                System.out.printf("%-30s %-30s %-15d%n",
+                        resultSet.getString("CapitalName"),
+                        resultSet.getString("CountryName"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching capital cities in continent: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches and displays all capital cities in a region organized by largest population to smallest.
+     * @param region The name of the region.
+     */
+    public void getCapitalCitiesInRegionByPopulation(String region) {
+        try {
+            String query =
+                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population " +
+                            "FROM city " +
+                            "JOIN country ON city.ID = country.Capital " +
+                            "WHERE country.Region = ? " +
+                            "ORDER BY city.Population DESC";
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, region);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.printf("%-30s %-30s %-15s%n", "Capital City", "Country", "Population");
+            while (resultSet.next()) {
+                System.out.printf("%-30s %-30s %-15d%n",
+                        resultSet.getString("CapitalName"),
+                        resultSet.getString("CountryName"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching capital cities in region: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches and displays the top N populated capital cities in the world.
+     * @param topN The number of capital cities to fetch.
+     */
+    public void getTopNCapitalCitiesWorldwide(int topN) {
+        try {
+            String query =
+                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population " +
+                            "FROM city " +
+                            "JOIN country ON city.ID = country.Capital " +
+                            "ORDER BY city.Population DESC " +
+                            "LIMIT ?";
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, topN);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.printf("%-30s %-30s %-15s%n", "Capital City", "Country", "Population");
+            while (resultSet.next()) {
+                System.out.printf("%-30s %-30s %-15d%n",
+                        resultSet.getString("CapitalName"),
+                        resultSet.getString("CountryName"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching top N capital cities worldwide: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches and displays the top N populated capital cities in a continent.
+     * @param continent The name of the continent.
+     * @param topN The number of capital cities to fetch.
+     */
+    public void getTopNCapitalCitiesInContinent(String continent, int topN) {
+        try {
+            String query =
+                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population " +
+                            "FROM city " +
+                            "JOIN country ON city.ID = country.Capital " +
+                            "WHERE country.Continent = ? " +
+                            "ORDER BY city.Population DESC " +
+                            "LIMIT ?";
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, continent);
+            statement.setInt(2, topN);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.printf("%-30s %-30s %-15s%n", "Capital City", "Country", "Population");
+            while (resultSet.next()) {
+                System.out.printf("%-30s %-30s %-15d%n",
+                        resultSet.getString("CapitalName"),
+                        resultSet.getString("CountryName"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching top N capital cities in continent: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Fetches and displays the top N populated capital cities in a region.
+     * @param region The name of the region.
+     * @param topN The number of capital cities to fetch.
+     */
+    public void getTopNCapitalCitiesInRegion(String region, int topN) {
+        try {
+            String query =
+                    "SELECT city.Name AS CapitalName, country.Name AS CountryName, city.Population " +
+                            "FROM city " +
+                            "JOIN country ON city.ID = country.Capital " +
+                            "WHERE country.Region = ? " +
+                            "ORDER BY city.Population DESC " +
+                            "LIMIT ?";
+
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, region);
+            statement.setInt(2, topN);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.printf("%-30s %-30s %-15s%n", "Capital City", "Country", "Population");
+            while (resultSet.next()) {
+                System.out.printf("%-30s %-30s %-15d%n",
+                        resultSet.getString("CapitalName"),
+                        resultSet.getString("CountryName"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching top N capital cities in region: " + e.getMessage());
+        }
+    }
+
+
 }
