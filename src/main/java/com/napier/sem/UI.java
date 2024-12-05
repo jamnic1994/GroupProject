@@ -131,38 +131,38 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Fetching all countries in the world (largest to smallest population):");
-                    // app.getAllCountriesByPopulation(); // Call the appropriate method
+                    app.getAllCountriesByPopulation(); // Call the appropriate method
                     break;
                 case 2:
                     System.out.println("Fetching all countries in a continent (largest to smallest population):");
                     System.out.print("Enter the continent name: ");
                     String continent = scanner.nextLine();
-                     // app.getCountriesInContinentByPopulation(continent); // Call the appropriate method
+                    app.getCountriesInContinentByPopulation(continent); // Call the appropriate method
                     break;
                 case 3:
                     System.out.println("Fetching all countries in a region (largest to smallest population):");
                     System.out.print("Enter the region name: ");
                     String region = scanner.nextLine();
-                    // app.getCountriesInRegionByPopulation(region); // Call the appropriate method
+                    app.getCountriesInRegionByPopulation(region); // Call the appropriate method
                     break;
                 case 4:
                     System.out.println("Fetching top N populated countries in the world:");
                     int topNWorld = getTopNFromUser(scanner);
-                    // app.getTopNCountriesByPopulationWorldwide(topNWorld); // Call the appropriate method
+                    app.getTopNCountriesByPopulationWorldwide(topNWorld); // Call the appropriate method
                     break;
                 case 5:
                     System.out.println("Fetching top N populated countries in a continent:");
                     System.out.print("Enter the continent name: ");
                     String topNContinent = scanner.nextLine();
                     int topNForContinent = getTopNFromUser(scanner);
-                    // app.getTopNCountriesByPopulationInContinent(topNContinent, topNForContinent); // Call the appropriate method
+                    app.getTopNCountriesByPopulationInContinent(topNContinent, topNForContinent); // Call the appropriate method
                     break;
                 case 6:
                     System.out.println("Fetching top N populated countries in a region:");
                     System.out.print("Enter the region name: ");
                     String topNRegion = scanner.nextLine();
                     int topNForRegion = getTopNFromUser(scanner);
-                    // app.getTopNCountriesByPopulationInRegion(topNRegion, topNForRegion); // Call the appropriate method
+                    app.getTopNCountriesByPopulationInRegion(topNRegion, topNForRegion); // Call the appropriate method
                     break;
                 case -1:
                     System.out.println("Returning to Main Menu...");
@@ -206,64 +206,64 @@ public class UI {
             switch (inputNum) {
                 case 1:
                     System.out.println("Fetching all cities in the world (largest to smallest population):");
-                    // app.getAllCitiesByPopulationWorldwide(); // Call the appropriate method
+                    app.getAllCitiesByPopulationWorldwide(); // Call the appropriate method
                     break;
                 case 2:
                     System.out.println("Fetching all cities in a continent (largest to smallest population):");
                     System.out.print("Enter the continent name: ");
                     String continent = scanner.nextLine();
-                    // app.getCitiesInContinentByPopulation(continent); // Call the appropriate method
+                    app.getCitiesInContinentByPopulation(continent); // Call the appropriate method
                     break;
                 case 3:
                     System.out.println("Fetching all cities in a region (largest to smallest population):");
                     System.out.print("Enter the region name: ");
                     String region = scanner.nextLine();
-                    // app.getCitiesInRegionByPopulation(region); // Call the appropriate method
+                    app.getCitiesInRegionByPopulation(region); // Call the appropriate method
                     break;
                 case 4:
                     System.out.println("Fetching all cities in a country (largest to smallest population):");
                     System.out.print("Enter the country name: ");
                     String country = scanner.nextLine();
-                    // app.getCitiesInCountryByPopulation(country); // Call the appropriate method
+                    app.getCitiesInCountryByPopulation(country); // Call the appropriate method
                     break;
                 case 5:
                     System.out.println("Fetching all cities in a district (largest to smallest population):");
                     System.out.print("Enter the district name: ");
                     String district = scanner.nextLine();
-                    // app.getCitiesInDistrictByPopulation(district); // Call the appropriate method
+                    app.getCitiesInDistrictByPopulation(district); // Call the appropriate method
                     break;
                 case 6:
                     System.out.println("Fetching top N populated cities in the world:");
                     int topNWorld = getTopNFromUser(scanner);
-                    // app.getTopNCitiesByPopulationWorldwide(topNWorld); // Call the appropriate method
+                    app.getTopNCitiesByPopulationWorldwide(topNWorld); // Call the appropriate method
                     break;
                 case 7:
                     System.out.println("Fetching top N populated cities in a continent:");
                     System.out.print("Enter the continent name: ");
                     String topNContinent = scanner.nextLine();
                     int topNForContinent = getTopNFromUser(scanner);
-                    // app.getTopNCitiesByPopulationInContinent(topNContinent, topNForContinent); // Call the appropriate method
+                    app.getTopNCitiesByPopulationInContinent(topNContinent, topNForContinent); // Call the appropriate method
                     break;
                 case 8:
                     System.out.println("Fetching top N populated cities in a region:");
                     System.out.print("Enter the region name: ");
                     String topNRegion = scanner.nextLine();
                     int topNForRegion = getTopNFromUser(scanner);
-                    // app.getTopNCitiesByPopulationInRegion(topNRegion, topNForRegion); // Call the appropriate method
+                    app.getTopNCitiesByPopulationInRegion(topNRegion, topNForRegion); // Call the appropriate method
                     break;
                 case 9:
                     System.out.println("Fetching top N populated cities in a country:");
                     System.out.print("Enter the country name: ");
                     String topNCountry = scanner.nextLine();
                     int topNForCountry = getTopNFromUser(scanner);
-                    // app.getTopNCitiesByPopulationInCountry(topNCountry, topNForCountry); // Call the appropriate method
+                    app.getTopNCitiesByPopulationInCountry(topNCountry, topNForCountry); // Call the appropriate method
                     break;
                 case 10:
                     System.out.println("Fetching top N populated cities in a district:");
                     System.out.print("Enter the district name: ");
                     String topNDistrict = scanner.nextLine();
                     int topNForDistrict = getTopNFromUser(scanner);
-                    // app.getTopNCitiesByPopulationInDistrict(topNDistrict, topNForDistrict); // Call the appropriate method
+                    app.getTopNCitiesByPopulationInDistrict(topNDistrict, topNForDistrict); // Call the appropriate method
                     break;
                 case -1:
                     System.out.println("Returning to Main Menu...");

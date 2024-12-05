@@ -753,5 +753,377 @@ public class App {
         }
     }
 
+    /**
+     * Retrieves all cities in the world organized by largest population to smallest.
+     */
+    public void getAllCitiesByPopulationWorldwide() {
+        try {
+            String query = "SELECT Name, CountryCode, District, Population FROM city ORDER BY Population DESC";
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            System.out.println("Name | CountryCode | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("CountryCode"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all cities in a continent organized by largest population to smallest.
+     */
+    public void getCitiesInContinentByPopulation(String continent) {
+        try {
+            String query = "SELECT city.Name, city.District, city.Population " +
+                    "FROM city JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = ? ORDER BY city.Population DESC";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, continent);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all cities in a region organized by largest population to smallest.
+     */
+    public void getCitiesInRegionByPopulation(String region) {
+        try {
+            String query = "SELECT city.Name, city.District, city.Population " +
+                    "FROM city JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Region = ? ORDER BY city.Population DESC";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, region);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all cities in a country organized by largest population to smallest.
+     */
+    public void getCitiesInCountryByPopulation(String country) {
+        try {
+            String query = "SELECT Name, District, Population " +
+                    "FROM city WHERE CountryCode = " +
+                    "(SELECT Code FROM country WHERE Name = ?) ORDER BY Population DESC";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, country);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all cities in a district organized by largest population to smallest.
+     */
+    public void getCitiesInDistrictByPopulation(String district) {
+        try {
+            String query = "SELECT Name, Population FROM city WHERE District = ? ORDER BY Population DESC";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, district);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated cities in the world.
+     */
+    public void getTopNCitiesByPopulationWorldwide(int n) {
+        try {
+            String query = "SELECT Name, CountryCode, District, Population FROM city ORDER BY Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | CountryCode | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("CountryCode"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated cities in a continent.
+     */
+    public void getTopNCitiesByPopulationInContinent(String continent, int n) {
+        try {
+            String query = "SELECT city.Name, city.District, city.Population " +
+                    "FROM city JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, continent);
+            statement.setInt(2, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated cities in a continent.
+     */
+    public void getTopNCitiesByPopulationInRegion(String region, int n) {
+        try {
+            String query = "SELECT city.Name, city.District, city.Population " +
+                    "FROM city JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, region);
+            statement.setInt(2, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated cities in a continent.
+     */
+    public void getTopNCitiesByPopulationInCountry(String country, int n) {
+        try {
+            String query = "SELECT city.Name, city.District, city.Population " +
+                    "FROM city JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, country);
+            statement.setInt(2, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated cities in a continent.
+     */
+    public void getTopNCitiesByPopulationInDistrict(String district, int n) {
+        try {
+            String query = "SELECT city.Name, city.District, city.Population " +
+                    "FROM city JOIN country ON city.CountryCode = country.Code " +
+                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, district);
+            statement.setInt(2, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | District | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("District"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching city data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all countries in the world, sorted by population in descending order.
+     */
+    public void getAllCountriesByPopulation() {
+        try {
+            String query = "SELECT Name, Continent, Region, Population FROM country ORDER BY Population DESC";
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            System.out.println("Name | Continent | Region | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("Continent"),
+                        resultSet.getString("Region"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching country data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all countries in a specific continent, sorted by population in descending order.
+     */
+    public void getCountriesInContinentByPopulation(String continent) {
+        try {
+            String query = "SELECT Name, Region, Population FROM country WHERE Continent = ? ORDER BY Population DESC";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, continent);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | Region | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("Region"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching country data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves all countries in a specific region, sorted by population in descending order.
+     */
+    public void getCountriesInRegionByPopulation(String region) {
+        try {
+            String query = "SELECT Name, Continent, Population FROM country WHERE Region = ? ORDER BY Population DESC";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, region);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | Continent | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("Continent"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching country data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated countries in the world.
+     */
+    public void getTopNCountriesByPopulationWorldwide(int n) {
+        try {
+            String query = "SELECT Name, Continent, Region, Population FROM country ORDER BY Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setInt(1, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | Continent | Region | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("Continent"),
+                        resultSet.getString("Region"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching country data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated countries in a specific continent.
+     */
+    public void getTopNCountriesByPopulationInContinent(String continent, int n) {
+        try {
+            String query = "SELECT Name, Region, Population FROM country WHERE Continent = ? ORDER BY Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, continent);
+            statement.setInt(2, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | Region | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("Region"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching country data: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Retrieves the top N populated countries in a specific region.
+     */
+    public void getTopNCountriesByPopulationInRegion(String region, int n) {
+        try {
+            String query = "SELECT Name, Continent, Population FROM country WHERE Region = ? ORDER BY Population DESC LIMIT ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, region);
+            statement.setInt(2, n);
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("Name | Continent | Population");
+            while (resultSet.next()) {
+                System.out.printf("%s | %s | %d%n",
+                        resultSet.getString("Name"),
+                        resultSet.getString("Continent"),
+                        resultSet.getInt("Population"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error fetching country data: " + e.getMessage());
+        }
+    }
 
 }
