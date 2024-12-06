@@ -1,3 +1,5 @@
+32 requirements of 32 have been implemented, which is 100%.
+
 # To run:
 
 1. Stop + delete any running containers and images.
