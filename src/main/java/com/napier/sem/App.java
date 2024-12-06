@@ -420,25 +420,33 @@ public class App {
     public void getPopulationInOutCitiesByContinent(String continent) {
         try {
             String select =
-                    "SELECT " +
-                        "SUM(CASE WHEN city.Name IS NOT NULL THEN country.Population ELSE 0 END) AS PopulationInCities, " +
-                        "SUM(CASE WHEN city.Name IS NULL THEN country.Population ELSE 0 END) AS PopulationOutCities " +
-                        "FROM country " +
-                        "LEFT JOIN city ON country.Code = city.CountryCode " +
-                        "WHERE country.Continent = ?";
+                "SELECT " +
+                    "    c.TotalPopulation AS TotalPopulation, " +
+                    "    COALESCE(SUM(city.Population), 0) AS PopulationInCities, " +
+                    "    (c.TotalPopulation - COALESCE(SUM(city.Population), 0)) AS PopulationOutCities " +
+                    "FROM " +
+                    "    (SELECT Continent, SUM(Population) AS TotalPopulation " +
+                    "     FROM country " +
+                    "     WHERE Continent = ? " +
+                    "     GROUP BY Continent) c " +
+                    "LEFT JOIN country ON c.Continent = country.Continent " +
+                    "LEFT JOIN city ON country.Code = city.CountryCode " +
+                    "GROUP BY c.TotalPopulation";
 
             PreparedStatement statement = con.prepareStatement(select);
             statement.setString(1, continent);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("\nPopulation living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
                 System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
             }
         } catch (Exception e) {
             System.out.println("Error fetching population data: " + e.getMessage());
         }
     }
+
+
 
     /**
      * Fetches the population living in and outside of cities for a specific region.
@@ -447,25 +455,32 @@ public class App {
     public void getPopulationInOutCitiesByRegion(String region) {
         try {
             String select =
-                    "SELECT " +
-                        "SUM(CASE WHEN city.Name IS NOT NULL THEN country.Population ELSE 0 END) AS PopulationInCities, " +
-                        "SUM(CASE WHEN city.Name IS NULL THEN country.Population ELSE 0 END) AS PopulationOutCities " +
-                        "FROM country " +
-                        "LEFT JOIN city ON country.Code = city.CountryCode " +
-                        "WHERE country.Region = ?";
+                "SELECT " +
+                    "    r.TotalPopulation AS TotalPopulation, " +
+                    "    COALESCE(SUM(city.Population), 0) AS PopulationInCities, " +
+                    "    (r.TotalPopulation - COALESCE(SUM(city.Population), 0)) AS PopulationOutCities " +
+                    "FROM " +
+                    "    (SELECT Region, SUM(Population) AS TotalPopulation " +
+                    "     FROM country " +
+                    "     WHERE Region = ? " +
+                    "     GROUP BY Region) r " +
+                    "LEFT JOIN country ON r.Region = country.Region " +
+                    "LEFT JOIN city ON country.Code = city.CountryCode " +
+                    "GROUP BY r.TotalPopulation";
 
             PreparedStatement statement = con.prepareStatement(select);
             statement.setString(1, region);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("\nPopulation living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
                 System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
             }
         } catch (Exception e) {
             System.out.println("Error fetching population data: " + e.getMessage());
         }
     }
+
 
     /**
      * Fetches the population living in and outside of cities for a specific country.
@@ -474,25 +489,31 @@ public class App {
     public void getPopulationInOutCitiesByCountry(String country) {
         try {
             String select =
-                    "SELECT " +
-                        "SUM(CASE WHEN city.Name IS NOT NULL THEN country.Population ELSE 0 END) AS PopulationInCities, " +
-                        "SUM(CASE WHEN city.Name IS NULL THEN country.Population ELSE 0 END) AS PopulationOutCities " +
-                        "FROM country " +
-                        "LEFT JOIN city ON country.Code = city.CountryCode " +
-                        "WHERE country.Name = ?";
+                "SELECT " +
+                    "    c.TotalPopulation AS TotalPopulation, " +
+                    "    COALESCE(SUM(city.Population), 0) AS PopulationInCities, " +
+                    "    (c.TotalPopulation - COALESCE(SUM(city.Population), 0)) AS PopulationOutCities " +
+                    "FROM " +
+                    "    (SELECT Code, Name, Population AS TotalPopulation " +
+                    "     FROM country " +
+                    "     WHERE Name = ?) c " +
+                    "LEFT JOIN city ON c.Code = city.CountryCode " +
+                    "GROUP BY c.TotalPopulation";
 
             PreparedStatement statement = con.prepareStatement(select);
             statement.setString(1, country);
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("\nPopulation living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
                 System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
             }
         } catch (Exception e) {
             System.out.println("Error fetching population data: " + e.getMessage());
         }
     }
+
+
 
     /**
      * Fetches and displays all capital cities in the world organized by largest population to smallest.
