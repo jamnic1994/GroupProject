@@ -34,7 +34,7 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 | 7 | All the cities in the world organised by largest population to smallest. | Yes | ![7](https://github.com/jamnic1994/GroupProject/blob/master/images/img7.png) |
 | 8 | All the cities in a continent organised by largest population to smallest. | Yes | ![8](https://github.com/jamnic1994/GroupProject/blob/master/images/img8.png) |
 | 9 | All the cities in a region organised by largest population to smallest. | Yes | ![9](https://github.com/jamnic1994/GroupProject/blob/master/images/img9.png) |
-| 10 | All the cities in a country organised by largest population to smallest. | Yes | ![10](https://github.com/jamnic1994/GroupProject/blob/master/images/img01.png) |
+| 10 | All the cities in a country organised by largest population to smallest. | Yes | ![10](https://github.com/jamnic1994/GroupProject/blob/master/images/img10.png) |
 | 11 | All the cities in a district organised by largest population to smallest. | Yes | ![11](https://github.com/jamnic1994/GroupProject/blob/master/images/img11.png) |
 | 12 | The top N populated cities in the world where N is provided by the user. | Yes | ![12](https://github.com/jamnic1994/GroupProject/blob/master/images/img12.png) |
 | 13 | The top N populated cities in a continent where N is provided by the user. | Yes | ![13](https://github.com/jamnic1994/GroupProject/blob/master/images/img13.png) |
