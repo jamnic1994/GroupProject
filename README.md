@@ -47,4 +47,13 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 | 20 | The top N populated capital cities in the world where N is provided by the user. | Yes | ![20](https://github.com/jamnic1994/GroupProject/blob/master/images/img20.png) |
 | 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes | ![21](https://github.com/jamnic1994/GroupProject/blob/master/images/img21.png) |
 | 22 | The top N populated capital cities in a region where N is provided by the user. | Yes | ![22](https://github.com/jamnic1994/GroupProject/blob/master/images/img22.png) |
-
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | No | image |
+| 24 | The population of people, people living in cities, and people not living in cities in each region. | No | image |
+| 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes | image  |
+| 26 | Population of the world | Yes | image |
+| 27 | Population of a continent | Yes | image |
+| 28 | Population of a region | Yes | image |
+| 29 | Population of a country | Yes | image |
+| 30 | Population of a district | Yes | image |
+| 31 | Population of a city | Yes | image |
+| 32 | World percentage of Chinese, English, Hindi, Spanash & Arabic speakers | Yes | image |
