@@ -24,7 +24,7 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 - **Release:** [![Releases](https://img.shields.io/github/release/jamnic1994/groupproject/all.svg?style=flat-square)](https://github.com/jamnic1994/groupproject/releases)
 
 | ID | Requirement | Done | Image | 
-| ... | ... | ... | ... |
+| --- | --- | --- | --- |
 | 1 | All the countries in the world organised by largest population to smallest. | Yes | ![1](https://github.com/jamnic1994/GroupProject/blob/master/images/img1.png) |
 | 2 | All the countries in a continent organised by largest population to smallest. | Yes | ![2](https://github.com/jamnic1994/GroupProject/blob/master/images/img2.png) |
 | 3 | All the countries in a region organised by largest population to smallest. | Yes | ![3](https://github.com/jamnic1994/GroupProject/blob/master/images/img3.png) |
@@ -47,14 +47,4 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 | 20 | The top N populated capital cities in the world where N is provided by the user. | Yes | ![20](https://github.com/jamnic1994/GroupProject/blob/master/images/img20.png) |
 | 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes | ![21](https://github.com/jamnic1994/GroupProject/blob/master/images/img21.png) |
 | 22 | The top N populated capital cities in a region where N is provided by the user. | Yes | ![22](https://github.com/jamnic1994/GroupProject/blob/master/images/img22.png) |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent. | No | |
-| 24 | The population of people, people living in cities, and people not living in cities in each region. | No | |
-| 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes |  |
-| 26 | Population of the world | Yes | |
-| 27 | Population of a continent | Yes | |
-| 28 | Population of a region | Yes | |
-| 29 | Population of a country | Yes | |
-| 30 | Population of a district | Yes | |
-| 31 | Population of a city | Yes | |
-| 32 | World percentage of Chinese, English, Hindi, Spanash & Arabic speakers | Yes | |
 
