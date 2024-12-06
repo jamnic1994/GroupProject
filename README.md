@@ -56,4 +56,4 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 | 29 | Population of a country | Yes | ![29](https://github.com/jamnic1994/GroupProject/blob/master/images/img29.png) |
 | 30 | Population of a district | Yes | ![30](https://github.com/jamnic1994/GroupProject/blob/master/images/img30.png) |
 | 31 | Population of a city | Yes | ![31](https://github.com/jamnic1994/GroupProject/blob/master/images/img31.png) |
-| 32 | World percentage of Chinese, English, Hindi, Spanash & Arabic speakers | No | image |
+| 32 | World percentage of Chinese, English, Hindi, Spanash & Arabic speakers | No | ![32](https://github.com/jamnic1994/GroupProject/blob/master/images/img32.png) |
