@@ -484,7 +484,7 @@ public class App {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
 
-                System.out.println("Number of " + language + " speakers: " + resultSet.getLong("NumSpeakers"));
+                System.out.println("\nNumber of " + language + " speakers: " + resultSet.getLong("NumSpeakers"));
                 System.out.println("Percentage of world population: " + resultSet.getDouble("WorldPercentage") + "%");
             } else {
                 System.out.println("No data found for " + language + ".");
@@ -509,7 +509,7 @@ public class App {
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("\nPopulation living in cities: " + resultSet.getLong("PopulationInCities"));
                 System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
             }
         } catch (Exception e) {
@@ -536,7 +536,7 @@ public class App {
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("\nPopulation living in cities: " + resultSet.getLong("PopulationInCities"));
                 System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
             }
         } catch (Exception e) {
@@ -563,7 +563,7 @@ public class App {
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                System.out.println("Population living in cities: " + resultSet.getLong("PopulationInCities"));
+                System.out.println("\nPopulation living in cities: " + resultSet.getLong("PopulationInCities"));
                 System.out.println("Population living outside cities: " + resultSet.getLong("PopulationOutCities"));
             }
         } catch (Exception e) {
@@ -762,7 +762,7 @@ public class App {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            System.out.println("Name | CountryCode | District | Population");
+            System.out.println("\nName | CountryCode | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -787,7 +787,7 @@ public class App {
             statement.setString(1, continent);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -811,7 +811,7 @@ public class App {
             statement.setString(1, region);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -835,7 +835,7 @@ public class App {
             statement.setString(1, country);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -857,7 +857,7 @@ public class App {
             statement.setString(1, district);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | Population");
+            System.out.println("\nName | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %d%n",
                         resultSet.getString("Name"),
@@ -878,7 +878,7 @@ public class App {
             statement.setInt(1, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | CountryCode | District | Population");
+            System.out.println("\nName | CountryCode | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -904,7 +904,7 @@ public class App {
             statement.setInt(2, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -929,7 +929,7 @@ public class App {
             statement.setInt(2, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -954,7 +954,7 @@ public class App {
             statement.setInt(2, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -979,7 +979,7 @@ public class App {
             statement.setInt(2, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | District | Population");
+            System.out.println("\nName | District | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -1000,7 +1000,7 @@ public class App {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            System.out.println("Name | Continent | Region | Population");
+            System.out.println("\nName | Continent | Region | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -1023,7 +1023,7 @@ public class App {
             statement.setString(1, continent);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | Region | Population");
+            System.out.println("\nName | Region | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -1045,7 +1045,7 @@ public class App {
             statement.setString(1, region);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | Continent | Population");
+            System.out.println("\nName | Continent | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -1067,7 +1067,7 @@ public class App {
             statement.setInt(1, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | Continent | Region | Population");
+            System.out.println("\nName | Continent | Region | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -1091,7 +1091,7 @@ public class App {
             statement.setInt(2, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | Region | Population");
+            System.out.println("\nName | Region | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),
@@ -1114,7 +1114,7 @@ public class App {
             statement.setInt(2, n);
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("Name | Continent | Population");
+            System.out.println("\nName | Continent | Population");
             while (resultSet.next()) {
                 System.out.printf("%s | %s | %d%n",
                         resultSet.getString("Name"),

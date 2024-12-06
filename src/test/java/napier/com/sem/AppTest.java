@@ -4,7 +4,6 @@ import com.napier.sem.App;
 import com.napier.sem.City;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
