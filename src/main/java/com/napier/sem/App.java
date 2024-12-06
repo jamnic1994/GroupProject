@@ -846,7 +846,7 @@ public class App {
         try {
             String query = "SELECT city.Name, city.District, city.Population " +
                     "FROM city JOIN country ON city.CountryCode = country.Code " +
-                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+                    "WHERE country.Region = ? ORDER BY city.Population DESC LIMIT ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, region);
             statement.setInt(2, n);
@@ -865,13 +865,13 @@ public class App {
     }
 
     /**
-     * Retrieves the top N populated cities in a continent.
+     * Retrieves the top N populated cities in a Country.
      */
     public void getTopNCitiesByPopulationInCountry(String country, int n) {
         try {
             String query = "SELECT city.Name, city.District, city.Population " +
                     "FROM city JOIN country ON city.CountryCode = country.Code " +
-                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+                    "WHERE country.Name = ? ORDER BY city.Population DESC LIMIT ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, country);
             statement.setInt(2, n);
@@ -890,13 +890,13 @@ public class App {
     }
 
     /**
-     * Retrieves the top N populated cities in a continent.
+     * Retrieves the top N populated cities in a District.
      */
     public void getTopNCitiesByPopulationInDistrict(String district, int n) {
         try {
             String query = "SELECT city.Name, city.District, city.Population " +
                     "FROM city JOIN country ON city.CountryCode = country.Code " +
-                    "WHERE country.Continent = ? ORDER BY city.Population DESC LIMIT ?";
+                    "WHERE city.District = ? ORDER BY city.Population DESC LIMIT ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, district);
             statement.setInt(2, n);
