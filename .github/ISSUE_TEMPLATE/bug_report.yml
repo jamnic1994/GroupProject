@@ -1,7 +1,7 @@
 name: Bug Report
 description: File a bug report.
 title: "[Bug]: "
-labels: ["bug", "triage"]
+labels: ["bug"]
 projects: ["jamnic1994/GroupProject"]
 assignees: jamnic1994, J-Priestly, ZBlackstock, DHarris0n
 body:
