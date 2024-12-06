@@ -25,8 +25,8 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 
 | ID | Requirement | Done | Image | 
 | ... | ... | ... | ... |
-| 1 | All the countries in the world organised by largest population to smallest. | Yes | |
-| 2 | All the countries in a continent organised by largest population to smallest. | Yes | |
+| 1 | All the countries in the world organised by largest population to smallest. | Yes | ![1](https://github.com/jamnic1994/GroupProject/blob/master/images/img1.png) |
+| 2 | All the countries in a continent organised by largest population to smallest. | Yes |  |
 | 3 | All the countries in a region organised by largest population to smallest. | Yes | |
 | 4 | The top N populated countries in the world where N is provided by the user. | Yes | |
 | 5 | The top N populated countries in a continent where N is provided by the user. | Yes | |
