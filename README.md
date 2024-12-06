@@ -47,9 +47,9 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 | 20 | The top N populated capital cities in the world where N is provided by the user. | Yes | ![20](https://github.com/jamnic1994/GroupProject/blob/master/images/img20.png) |
 | 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes | ![21](https://github.com/jamnic1994/GroupProject/blob/master/images/img21.png) |
 | 22 | The top N populated capital cities in a region where N is provided by the user. | Yes | ![22](https://github.com/jamnic1994/GroupProject/blob/master/images/img22.png) |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent. | No | image |
-| 24 | The population of people, people living in cities, and people not living in cities in each region. | No | image |
-| 25 | The population of people, people living in cities, and people not living in cities in each country. | No | image  |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | Yes | ![23](https://github.com/jamnic1994/GroupProject/blob/master/images/img23.png) |
+| 24 | The population of people, people living in cities, and people not living in cities in each region. | Yes | ![24](https://github.com/jamnic1994/GroupProject/blob/master/images/img24.png) |
+| 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes | ![25](https://github.com/jamnic1994/GroupProject/blob/master/images/img25.png)  |
 | 26 | Population of the world | Yes | ![26](https://github.com/jamnic1994/GroupProject/blob/master/images/img26.png) |
 | 27 | Population of a continent | Yes | ![27](https://github.com/jamnic1994/GroupProject/blob/master/images/img27.png) |
 | 28 | Population of a region | Yes | ![28](https://github.com/jamnic1994/GroupProject/blob/master/images/img28.png) |
