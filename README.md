@@ -49,11 +49,11 @@ Set CI in .env file to "true" (Otherwise github workspace won't complete)
 | 22 | The top N populated capital cities in a region where N is provided by the user. | Yes | ![22](https://github.com/jamnic1994/GroupProject/blob/master/images/img22.png) |
 | 23 | The population of people, people living in cities, and people not living in cities in each continent. | No | image |
 | 24 | The population of people, people living in cities, and people not living in cities in each region. | No | image |
-| 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes | image  |
-| 26 | Population of the world | Yes | image |
-| 27 | Population of a continent | Yes | image |
-| 28 | Population of a region | Yes | image |
-| 29 | Population of a country | Yes | image |
-| 30 | Population of a district | Yes | image |
-| 31 | Population of a city | Yes | image |
-| 32 | World percentage of Chinese, English, Hindi, Spanash & Arabic speakers | Yes | image |
+| 25 | The population of people, people living in cities, and people not living in cities in each country. | No | image  |
+| 26 | Population of the world | Yes | ![26](https://github.com/jamnic1994/GroupProject/blob/master/images/img26.png) |
+| 27 | Population of a continent | Yes | ![27](https://github.com/jamnic1994/GroupProject/blob/master/images/img27.png) |
+| 28 | Population of a region | Yes | ![28](https://github.com/jamnic1994/GroupProject/blob/master/images/img28.png) |
+| 29 | Population of a country | Yes | ![29](https://github.com/jamnic1994/GroupProject/blob/master/images/img29.png) |
+| 30 | Population of a district | Yes | ![30](https://github.com/jamnic1994/GroupProject/blob/master/images/img30.png) |
+| 31 | Population of a city | Yes | ![31](https://github.com/jamnic1994/GroupProject/blob/master/images/img31.png) |
+| 32 | World percentage of Chinese, English, Hindi, Spanash & Arabic speakers | No | image |
