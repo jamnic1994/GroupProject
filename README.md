@@ -1,4 +1,4 @@
-30 requirements of 32 have been implemented, which is 93.75%.
+32 requirements of 32 have been implemented, which is 100%.
 
 # To run:
 
