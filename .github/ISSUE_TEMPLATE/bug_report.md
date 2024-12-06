@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: "[BUG]"
-labels: ''
+labels: "bug"
 assignees: jamnic1994, J-Priestly, ZBlackstock, DHarris0n
 
 ---
